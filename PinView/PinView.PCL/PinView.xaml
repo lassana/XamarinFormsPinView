@@ -20,19 +20,19 @@
 					Height="Auto" />
 				<!-- Dots -->
 				<RowDefinition
-					Height="42" />
+					Height="44" />
 				<!-- 1 2 3 -->
 				<RowDefinition
-					Height="42" />
+					Height="44" />
 				<!-- 4 5 6 -->
 				<RowDefinition
-					Height="42" />
+					Height="44" />
 				<!-- 7 8 9 -->
 				<RowDefinition
-					Height="42" />
+					Height="44" />
 				<!--   0 <- -->
 				<RowDefinition
-					Height="42" />
+					Height="44" />
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition
@@ -44,6 +44,7 @@
 			</Grid.ColumnDefinitions>
 			<Label
 				x:Name="titleLabel"
+				FontSize="Medium"
 				HorizontalTextAlignment="Center"
 				Grid.Row="0"
 				Grid.ColumnSpan="3" />
@@ -115,11 +116,18 @@
 				Command="{Binding KeyPressCommand}"
 				CommandParameter="0" />
 			<local:PinItemView
-				Text="⌫"
 				Grid.Column="2"
 				Grid.Row="5"
 				Command="{Binding KeyPressCommand}"
-				CommandParameter="Backspace" />
+				CommandParameter="Backspace">
+				<local:PinItemView.Text>
+					<OnPlatform
+						x:TypeArguments="x:String">
+						<OnPlatform.iOS>⌫</OnPlatform.iOS>
+						<OnPlatform.Android>✕</OnPlatform.Android>
+					</OnPlatform>
+				</local:PinItemView.Text>
+			</local:PinItemView>
 		</Grid>
 	</ContentView.Content>
 </ContentView>

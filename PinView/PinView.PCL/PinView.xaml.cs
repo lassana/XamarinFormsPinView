@@ -5,6 +5,9 @@ namespace PinView.PCL
 {
     public partial class PinView : ContentView
     {
+        private readonly ImageSource _emptyCircle;
+        private readonly ImageSource _filledCircle;
+
         public string Title
         {
             get { return titleLabel.Text; }
@@ -17,6 +20,9 @@ namespace PinView.PCL
         public PinView()
         {
             InitializeComponent();
+
+            _emptyCircle = "img_circle.png";
+            _filledCircle = "img_circle_filled.png";
 
             BindingContextChanged += (sender, e) =>
             {
@@ -41,9 +47,11 @@ namespace PinView.PCL
                     {
                         circlesStackLayout.Children.Add(new Image
                         {
-                            Source = "img_circle.png",
+                            Source = _emptyCircle,
                             HeightRequest = 28,
-                            WidthRequest = 28
+                            WidthRequest = 28,
+                            MinimumWidthRequest = 28,
+                            MinimumHeightRequest = 28
                         });
                     }
                 }
@@ -51,11 +59,11 @@ namespace PinView.PCL
                 {
                     for (int i = 0; i < vm.EnteredPin.Count; ++i)
                     {
-                        (circlesStackLayout.Children[i] as Image).Source = "img_circle_filled.png";
+                        (circlesStackLayout.Children[i] as Image).Source = _filledCircle;
                     }
                     for (int i = vm.EnteredPin.Count; i < vm.TargetPin.Count; ++i)
                     {
-                        (circlesStackLayout.Children[i] as Image).Source = "img_circle.png";
+                        (circlesStackLayout.Children[i] as Image).Source = _emptyCircle;
                     }
                 }
             }

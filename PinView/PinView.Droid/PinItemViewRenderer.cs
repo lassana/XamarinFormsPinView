@@ -3,14 +3,18 @@ using PinView.PCL;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android.AppCompat;
 using AView = Android.Views.View;
-using AButton = Android.Widget.Button;
 using AColor = Android.Graphics.Color;
+using Android.Widget;
+using Android.Content.Res;
+using Android.Util;
+using System;
 
 [assembly: ExportRenderer(typeof(PinItemView), typeof(PinItemViewRenderer))]
 namespace PinView.Droid
 {
     public class PinItemViewRenderer : ViewRenderer<PinItemView, AView>
     {
+        private FrameLayout _frame;
         private RippleButton _button;
 
         public static void Init()
@@ -35,15 +39,26 @@ namespace PinView.Droid
             {
                 if (Control == null)
                 {
+                    var sideSize = (int)convertDpToPixel(44);
+
                     _button = new RippleButton(Context);
-                    _button.SetBackgroundColor(AColor.Transparent);
+                    _button.SetWidth(sideSize);
+                    _button.SetHeight(sideSize);
+                    //_button.SetBackgroundColor(AColor.Red);
+                    _button.SetBackgroundResource(Resource.Drawable.bkg_roundedview);
                     _button.Text = Element.Text;
                     _button.Gravity = Android.Views.GravityFlags.Center;
-                    _button.OnClick += (sender, args) => 
+                    _button.OnClick += (sender, args) =>
                     {
                         Element?.Command?.Execute(Element?.CommandParameter);
                     };
-                    SetNativeControl(_button);
+
+                    FrameLayout frame = new FrameLayout(Context);
+                    FrameLayout.LayoutParams @params = new FrameLayout.LayoutParams(sideSize, sideSize);
+                    @params.Gravity = Android.Views.GravityFlags.Center;
+                    frame.AddView(_button, @params);
+
+                    SetNativeControl(frame);
                 }
             }
         }
@@ -55,7 +70,13 @@ namespace PinView.Droid
 
         protected override AView CreateNativeControl()
         {
-            return _button;
+            return _frame;
+        }
+
+        private float convertDpToPixel(float dp)
+        {
+            float density = Context.Resources.DisplayMetrics.Density;
+            return (int)Math.Round((float)dp * density);
         }
     }
 }

@@ -8,7 +8,7 @@ using Android.Content;
 
 namespace PinView.Droid
 {
-    public class RippleButton : Button
+    public class RippleButton : TextView
     {
         private float _duration = 250;
         private float _speed = 1;
@@ -72,6 +72,9 @@ namespace PinView.Droid
             {
                 Parent.RequestDisallowInterceptTouchEvent(false);
                 _touchAction = MotionEventActions.Up;
+
+                OnClick?.Invoke(this, EventArgs.Empty);
+
                 _radius = 1;
                 _endRadius = Math.Max(Math.Max(Math.Max(_width - _rippleX, _rippleX), _rippleY), _height - _rippleY);
                 _speed = _endRadius / _duration * 10;
@@ -83,10 +86,6 @@ namespace PinView.Droid
                         _radius += _speed;
                         _paint.Alpha = 90 - (int)(_radius / _endRadius * 90);
                         _handler.PostDelayed(animAction, 1);
-                    }
-                    else
-                    {
-                        OnClick?.Invoke(this, EventArgs.Empty);
                     }
                 };
                 _handler.PostDelayed(animAction, 10);
