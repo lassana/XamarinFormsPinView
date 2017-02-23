@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using Xamarin.Forms;
 
 namespace PinView.PCL
@@ -25,15 +24,26 @@ namespace PinView.PCL
             }
         }
 
-        private IList<char> _targetPin = new List<char>();
-        public IList<char> TargetPin
+        private int _targetPinLength;
+        public int TargetPinLength
         {
-            get { return _targetPin; }
+            get { return _targetPinLength; }
             set
             {
-                _targetPin = value;
-                RaisePropertyChanged(nameof(TargetPin));
+                _targetPinLength = value;
+                RaisePropertyChanged(nameof(TargetPinLength));
                 OnUpdateDisplayedText?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        private Func<IList<char>, bool> _validatorFunc;
+        public Func<IList<char>, bool> ValidatorFunc
+        {
+            get { return _validatorFunc; }
+            set
+            {
+                _validatorFunc = value;
+                RaisePropertyChanged(nameof(ValidatorFunc));
             }
         }
 
@@ -62,12 +72,12 @@ namespace PinView.PCL
                         OnUpdateDisplayedText?.Invoke(this, EventArgs.Empty);
                     }
                 }
-                else if (EnteredPin.Count < TargetPin.Count)
+                else if (EnteredPin.Count < TargetPinLength)
                 {
                     EnteredPin.Add(arg[0]);
-                    if (EnteredPin.Count == TargetPin.Count)
+                    if (EnteredPin.Count == TargetPinLength)
                     {
-                        if (EnteredPin.SequenceEqual(TargetPin))
+                        if (ValidatorFunc.Invoke(EnteredPin))
                         {
                             EnteredPin.Clear();
                             OnSuccess?.Invoke(this, EventArgs.Empty);

@@ -39,11 +39,11 @@ namespace PinView.PCL
         private void Handle_OnUpdateDisplayedText(object sender, EventArgs e)
         {
             var vm = sender as PinViewModel;
-            if (vm.EnteredPin != null && vm.TargetPin != null)
+            if (vm.EnteredPin != null && vm.TargetPinLength > 0)
             {
                 if (circlesStackLayout.Children.Count == 0)
                 {
-                    for (int i = 0; i < vm.TargetPin.Count; ++i)
+                    for (int i = 0; i < vm.TargetPinLength; ++i)
                     {
                         circlesStackLayout.Children.Add(new Image
                         {
@@ -61,7 +61,7 @@ namespace PinView.PCL
                     {
                         (circlesStackLayout.Children[i] as Image).Source = _filledCircle;
                     }
-                    for (int i = vm.EnteredPin.Count; i < vm.TargetPin.Count; ++i)
+                    for (int i = vm.EnteredPin.Count; i < vm.TargetPinLength; ++i)
                     {
                         (circlesStackLayout.Children[i] as Image).Source = _emptyCircle;
                     }
