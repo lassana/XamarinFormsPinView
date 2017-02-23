@@ -18,7 +18,7 @@ namespace PinViewSample.Views
 
             vm.PinViewModel.OnSuccess += (sender, e) =>
             {
-                Navigation.PopModalAsync();
+                Navigation.PopAsync();
             };
 
             BindingContext = vm;

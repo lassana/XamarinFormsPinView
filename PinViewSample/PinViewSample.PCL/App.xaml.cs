@@ -12,7 +12,7 @@ namespace PinViewSample
 
             var rootPage = new NavigationPage(new MainPage());
             var pinPage = new PinAuthPage();
-            Task.WaitAll(rootPage.Navigation.PushModalAsync(pinPage));
+            rootPage.Navigation.PushAsync(pinPage);
             MainPage = rootPage;
         }
 
