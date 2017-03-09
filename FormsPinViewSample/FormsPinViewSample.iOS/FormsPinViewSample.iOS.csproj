@@ -106,16 +106,14 @@
       <HintPath>..\..\packages\Xamarin.Forms.2.3.3.193\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="FormsPinView.iOS">
+      <HintPath>..\..\packages\FormsPinView.1.0.0\lib\Xamarin.iOS10\FormsPinView.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="FormsPinView.PCL">
+      <HintPath>..\..\packages\FormsPinView.1.0.0\lib\Xamarin.iOS10\FormsPinView.PCL.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FormsPinView\FormsPinView.iOS\FormsPinView.iOS.csproj">
-      <Project>{F0218B13-AC99-4354-A1AA-0DBA60DD879C}</Project>
-      <Name>FormsPinView.iOS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\FormsPinView\FormsPinView.PCL\FormsPinView.PCL.csproj">
-      <Project>{47234E81-6556-4545-B23E-56FD0355604F}</Project>
-      <Name>FormsPinView.PCL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FormsPinViewSample.PCL\FormsPinViewSample.PCL.csproj">
       <Project>{A0ED94D6-495F-4247-8B93-B813C2883643}</Project>
       <Name>FormsPinViewSample.PCL</Name>

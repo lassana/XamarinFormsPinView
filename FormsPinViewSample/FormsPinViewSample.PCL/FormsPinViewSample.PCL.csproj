@@ -53,12 +53,6 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FormsPinView\FormsPinView.PCL\FormsPinView.PCL.csproj">
-      <Project>{47234E81-6556-4545-B23E-56FD0355604F}</Project>
-      <Name>FormsPinView.PCL</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Views\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
@@ -74,6 +68,9 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.3.193\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Xaml.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="FormsPinView.PCL">
+      <HintPath>..\..\packages\FormsPinView.1.0.0\lib\portable45-net45+win8+wp8\FormsPinView.PCL.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -81,16 +81,14 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.3.193\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="FormsPinView.Droid">
+      <HintPath>..\..\packages\FormsPinView.1.0.0\lib\MonoAndroid10\FormsPinView.Droid.dll</HintPath>
+    </Reference>
+    <Reference Include="FormsPinView.PCL">
+      <HintPath>..\..\packages\FormsPinView.1.0.0\lib\MonoAndroid10\FormsPinView.PCL.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FormsPinView\FormsPinView.Droid\FormsPinView.Droid.csproj">
-      <Project>{78E4A284-455D-448D-8517-7A61A14EF14A}</Project>
-      <Name>FormsPinView.Droid</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\FormsPinView\FormsPinView.PCL\FormsPinView.PCL.csproj">
-      <Project>{47234E81-6556-4545-B23E-56FD0355604F}</Project>
-      <Name>FormsPinView.PCL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FormsPinViewSample.PCL\FormsPinViewSample.PCL.csproj">
       <Project>{A0ED94D6-495F-4247-8B93-B813C2883643}</Project>
       <Name>FormsPinViewSample.PCL</Name>
