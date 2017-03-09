@@ -10,11 +10,8 @@
         <projectUrl>https://github.com/lassana/XamarinFormsPinView</projectUrl>
         <iconUrl>https://raw.githubusercontent.com/jamesmontemagno/Xamarin-Templates/master/Plugins-Templates/icons/plugin_icon_nuget.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>
-            Custom control for Xamarin.Forms projects that provides to users simple and clear way to enter numeric key.
-            Built against: 2.3.3.193
-        </description>
-        <summary>A Xamarin.Forms UI control which is designed to be used as PIN keyboard.</summary>
+        <description>A Xamarin.Forms UI control which is designed to be used as PIN keyboard. Built against: 2.3.3.193</description>
+        <summary>Custom control for Xamarin.Forms projects that provides to users simple and clear way to enter numeric key.</summary>
         <tags>xamarin, pcl, xam.pcl, android, xamarin.forms, ios</tags>
         <dependencies>
             <dependency id="Xamarin.Forms" version="2.3.3.193" />
