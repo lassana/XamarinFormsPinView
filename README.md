@@ -4,7 +4,11 @@
 
 ## Usage
 
-1. Add [FormsPinView.PCL](FormsPinView/FormsPinView.PCL), [FormsPinView.iOS](FormsPinView/FormsPinView.iOS), and [FormsPinView.Droid](FormsPinView/FormsPinView.Droid) to your solution.
+1. Add the following NuGet package: https://www.nuget.org/packages/FormsPinView/ [![NuGet](https://img.shields.io/nuget/v/FormsPinView.svg?label=NuGet)](https://www.nuget.org/packages/FormsPinView/) 
+    
+    _OR_
+    
+    add [FormsPinView.PCL](FormsPinView/FormsPinView.PCL), [FormsPinView.iOS](FormsPinView/FormsPinView.iOS), and [FormsPinView.Droid](FormsPinView/FormsPinView.Droid) to your solution.
 1. Initialize iOS and Android renderers:
 
         // iOS:
