@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:local="clr-namespace:FormsPinView.PCL;assembly=FormsPinView.PCL"
+	x:Class="FormsPinView.PCL.PinView">
+	<ContentView.Content>
+		<Grid
+			RowSpacing="18">
+			<Grid.Margin>
+				<OnIdiom
+					x:TypeArguments="Thickness">
+					<OnIdiom.Phone>6,6</OnIdiom.Phone>
+					<OnIdiom.Tablet>160,6</OnIdiom.Tablet>
+				</OnIdiom>
+			</Grid.Margin>
+			<Grid.RowDefinitions>
+				<!-- Title -->
+				<RowDefinition
+					Height="Auto" />
+				<!-- Dots -->
+				<RowDefinition
+					Height="44" />
+				<!-- 1 2 3 -->
+				<RowDefinition
+					Height="44" />
+				<!-- 4 5 6 -->
+				<RowDefinition
+					Height="44" />
+				<!-- 7 8 9 -->
+				<RowDefinition
+					Height="44" />
+				<!--   0 <- -->
+				<RowDefinition
+					Height="44" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition
+					Width="84" />
+				<ColumnDefinition
+					Width="84" />
+				<ColumnDefinition
+					Width="84" />
+			</Grid.ColumnDefinitions>
+			<Label
+				x:Name="titleLabel"
+				FontSize="Medium"
+				HorizontalTextAlignment="Center"
+				Grid.Row="0"
+				Grid.ColumnSpan="3" />
+			<StackLayout
+				x:Name="circlesStackLayout"
+				HorizontalOptions="CenterAndExpand"
+				Orientation="Horizontal"
+				Grid.Row="1"
+				Grid.ColumnSpan="3">
+			</StackLayout>
+			<local:PinItemView
+				Text="1"
+				Grid.Column="0"
+				Grid.Row="2"
+				Command="{Binding KeyPressCommand}"
+				CommandParameter="1" />
+			<local:PinItemView
+				Text="2"
+				Grid.Column="1"
+				Grid.Row="2"
+				Command="{Binding KeyPressCommand}"
+				CommandParameter="2" />
+			<local:PinItemView
+				Text="3"
+				Grid.Column="2"
+				Grid.Row="2"
+				Command="{Binding KeyPressCommand}"
+				CommandParameter="3" />
+			<local:PinItemView
+				Text="4"
+				Grid.Column="0"
+				Grid.Row="3"
+				Command="{Binding KeyPressCommand}"
+				CommandParameter="4" />
+			<local:PinItemView
+				Text="5"
+				Grid.Column="1"
+				Grid.Row="3"
+				Command="{Binding KeyPressCommand}"
+				CommandParameter="5" />
+			<local:PinItemView
+				Text="6"
+				Grid.Column="2"
+				Grid.Row="3"
+				Command="{Binding KeyPressCommand}"
+				CommandParameter="6" />
+			<local:PinItemView
+				Text="7"
+				Grid.Column="0"
+				Grid.Row="4"
+				Command="{Binding KeyPressCommand}"
+				CommandParameter="7" />
+			<local:PinItemView
+				Text="8"
+				Grid.Column="1"
+				Grid.Row="4"
+				Command="{Binding KeyPressCommand}"
+				CommandParameter="8" />
+			<local:PinItemView
+				Text="9"
+				Grid.Column="2"
+				Grid.Row="4"
+				Command="{Binding KeyPressCommand}"
+				CommandParameter="9" />
+			<local:PinItemView
+				Text="0"
+				Grid.Column="1"
+				Grid.Row="5"
+				Command="{Binding KeyPressCommand}"
+				CommandParameter="0" />
+			<local:PinItemView
+				Grid.Column="2"
+				Grid.Row="5"
+				Command="{Binding KeyPressCommand}"
+				CommandParameter="Backspace">
+				<local:PinItemView.Text>
+					<OnPlatform
+						x:TypeArguments="x:String">
+						<OnPlatform.iOS>⌫</OnPlatform.iOS>
+						<OnPlatform.Android>✕</OnPlatform.Android>
+					</OnPlatform>
+				</local:PinItemView.Text>
+			</local:PinItemView>
+		</Grid>
+	</ContentView.Content>
+</ContentView>

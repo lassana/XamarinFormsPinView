@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata minClientVersion="2.8.1">
+        <id>FormsPinView</id>
+        <version>$version$</version>
+        <title>PIN keyboard for Xamarin.Forms</title>
+        <authors>Nikolai Doronin</authors>
+        <owners>Nikolai Doronin</owners>
+        <licenseUrl>https://github.com/lassana/XamarinFormsPinView/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/lassana/XamarinFormsPinView</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/jamesmontemagno/Xamarin-Templates/master/Plugins-Templates/icons/plugin_icon_nuget.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>
+            Custom control for Xamarin.Forms projects that provides to users simple and clear way to enter numeric key.
+            Built against: 2.3.3.193
+        </description>
+        <summary>A Xamarin.Forms UI control which is designed to be used as PIN keyboard.</summary>
+        <tags>xamarin, pcl, xam.pcl, android, xamarin.forms, ios</tags>
+        <dependencies>
+            <dependency id="Xamarin.Forms" version="2.3.3.193" />
+        </dependencies>
+        <releaseNotes>
+        </releaseNotes>
+    </metadata>
+    <files>
+        <!--Core-->
+        <file src="FormsPinView\FormsPinView.PCL\bin\Release\FormsPinView.PCL.dll" target="lib\portable45-net45+win8+wp8\FormsPinView.PCL.dll" />
+        <file src="FormsPinView\FormsPinView.PCL\bin\Release\FormsPinView.PCL.xml" target="lib\portable45-net45+win8+wp8\FormsPinView.PCL.xml" />
+        <file src="FormsPinView\FormsPinView.PCL\bin\Release\FormsPinView.PCL.pdb" target="lib\portable45-net45+win8+wp8\FormsPinView.PCL.pdb" />
+
+        <!--Xamarin.Android-->
+        <file src="FormsPinView\FormsPinView.Droid\bin\Release\FormsPinView.Droid.dll" target="lib\MonoAndroid10\FormsPinView.Droid.dll" />
+        <file src="FormsPinView\FormsPinView.Droid\bin\Release\FormsPinView.Droid.xml" target="lib\MonoAndroid10\FormsPinView.Droid.xml" />
+        <file src="FormsPinView\FormsPinView.Droid\bin\Release\FormsPinView.Droid.pdb" target="lib\MonoAndroid10\FormsPinView.Droid.pdb" />
+        <file src="FormsPinView\FormsPinView.PCL\bin\Release\FormsPinView.PCL.dll" target="lib\MonoAndroid10\FormsPinView.PCL.dll" />
+        <file src="FormsPinView\FormsPinView.PCL\bin\Release\FormsPinView.PCL.xml" target="lib\MonoAndroid10\FormsPinView.PCL.xml" />
+        <file src="FormsPinView\FormsPinView.PCL\bin\Release\FormsPinView.PCL.pdb" target="lib\MonoAndroid10\FormsPinView.PCL.pdb" />
+
+        <!--Xamarin.iOS-->
+        <file src="FormsPinView\FormsPinView.iOS\bin\Release\FormsPinView.iOS.dll" target="lib\Xamarin.iOS10\FormsPinView.iOS.dll" />
+        <file src="FormsPinView\FormsPinView.iOS\bin\Release\FormsPinView.iOS.xml" target="lib\Xamarin.iOS10\FormsPinView.iOS.xml" />
+        <file src="FormsPinView\FormsPinView.PCL\bin\Release\FormsPinView.PCL.dll" target="lib\Xamarin.iOS10\FormsPinView.PCL.dll" />
+        <file src="FormsPinView\FormsPinView.PCL\bin\Release\FormsPinView.PCL.xml" target="lib\Xamarin.iOS10\FormsPinView.PCL.xml" />
+    </files>
+</package>

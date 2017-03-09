@@ -1,21 +1,21 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PinView", "PinView", "{17DB4187-0C67-4A2F-9C18-A46404913569}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FormsPinView", "FormsPinView", "{17DB4187-0C67-4A2F-9C18-A46404913569}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinView.PCL", "PinView\PinView.PCL\PinView.PCL.csproj", "{47234E81-6556-4545-B23E-56FD0355604F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsPinView.PCL", "FormsPinView\FormsPinView.PCL\FormsPinView.PCL.csproj", "{47234E81-6556-4545-B23E-56FD0355604F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinView.iOS", "PinView\PinView.iOS\PinView.iOS.csproj", "{F0218B13-AC99-4354-A1AA-0DBA60DD879C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsPinView.iOS", "FormsPinView\FormsPinView.iOS\FormsPinView.iOS.csproj", "{F0218B13-AC99-4354-A1AA-0DBA60DD879C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PinViewSample", "PinViewSample", "{1E3DC2C6-2817-4C10-BDC7-9987FA5A90A9}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FormsPinViewSample", "FormsPinViewSample", "{1E3DC2C6-2817-4C10-BDC7-9987FA5A90A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinViewSample.PCL", "PinViewSample\PinViewSample.PCL\PinViewSample.PCL.csproj", "{A0ED94D6-495F-4247-8B93-B813C2883643}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsPinViewSample.PCL", "FormsPinViewSample\FormsPinViewSample.PCL\FormsPinViewSample.PCL.csproj", "{A0ED94D6-495F-4247-8B93-B813C2883643}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinViewSample.iOS", "PinViewSample\PinViewSample.iOS\PinViewSample.iOS.csproj", "{5CF93491-FF3D-4245-892C-0EE8064AFEDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsPinViewSample.iOS", "FormsPinViewSample\FormsPinViewSample.iOS\FormsPinViewSample.iOS.csproj", "{5CF93491-FF3D-4245-892C-0EE8064AFEDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinView.Droid", "PinView\PinView.Droid\PinView.Droid.csproj", "{78E4A284-455D-448D-8517-7A61A14EF14A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsPinView.Droid", "FormsPinView\FormsPinView.Droid\FormsPinView.Droid.csproj", "{78E4A284-455D-448D-8517-7A61A14EF14A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PinViewSample.Droid", "PinViewSample\PinViewSample.Droid\PinViewSample.Droid.csproj", "{138B74F2-4EC1-43E3-AA4E-ED5522434446}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsPinViewSample.Droid", "FormsPinViewSample\FormsPinViewSample.Droid\FormsPinViewSample.Droid.csproj", "{138B74F2-4EC1-43E3-AA4E-ED5522434446}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
