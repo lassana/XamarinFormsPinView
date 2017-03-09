@@ -4,7 +4,7 @@
 
 ## Usage
 
-1. Add [PinView.PCL](PinView/PinView.PCL), [PinView.iOS](PinView/PinView.iOS), and [PinView.Droid](PinView/PinView.Droid) to your solution.
+1. Add [FormsPinView.PCL](FormsPinView/FormsPinView.PCL), [FormsPinView.iOS](FormsPinView/FormsPinView.iOS), and [FormsPinView.Droid](FormsPinView/FormsPinView.Droid) to your solution.
 1. Initialize iOS and Android renderers:
 
         // iOS:
@@ -26,7 +26,7 @@
 1. Add PinView to your page:
         
         ...
-        xmlns:local="clr-namespace:PinView.PCL;assembly=PinView.PCL"
+        xmlns:local="clr-namespace:FormsPinView.PCL;assembly=FormsPinView.PCL"
         ...
             <local:PinView
                 Title="🔐 Enter your PIN"
