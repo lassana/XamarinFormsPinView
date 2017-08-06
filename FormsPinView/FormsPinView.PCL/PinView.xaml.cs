@@ -29,8 +29,8 @@ namespace FormsPinView.PCL
                 if (BindingContext is PinViewModel)
                 {
                     var vm = BindingContext as PinViewModel;
-                    vm.OnError += Handle_OnError;
-                    vm.OnUpdateDisplayedText += Handle_OnUpdateDisplayedText;
+                    vm.Error += Handle_OnError;
+                    vm.DisplayedTextUpdated += Handle_OnUpdateDisplayedText;
                     Handle_OnUpdateDisplayedText(vm, EventArgs.Empty);
                 }
             };

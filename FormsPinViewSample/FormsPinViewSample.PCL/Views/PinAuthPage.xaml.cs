@@ -16,7 +16,7 @@ namespace FormsPinViewSample.Views
 
             var vm = new PinAuthViewModel();
 
-            vm.PinViewModel.OnSuccess += (sender, e) =>
+            vm.PinViewModel.Success += (sender, e) =>
             {
                 Navigation.PopAsync();
             };
