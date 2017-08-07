@@ -14,9 +14,9 @@ type PinAuthPage() as this =
         let viewModel = PinAuthViewModel()
         let handler = 
             EventHandler(fun s o -> 
-                this.Navigation.PopAsync() |> ignore
+                this.Navigation.PopModalAsync() |> ignore
             )
-        viewModel.PinViewModel.Success.AddHandler(handler)
+        viewModel.PinViewModel.Success.AddHandler handler
         base.BindingContext <- viewModel
 
     override this.OnBackButtonPressed(): bool = false

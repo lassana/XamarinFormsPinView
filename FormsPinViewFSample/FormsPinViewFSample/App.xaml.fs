@@ -8,7 +8,7 @@ type App() =
     do
         let rootPage = NavigationPage(MainPage())
         let nextPage = PinAuthPage()
-        rootPage.Navigation.PushAsync nextPage |> ignore
+        rootPage.Navigation.PushModalAsync nextPage |> ignore
         base.MainPage <- rootPage
 
     override this.OnStart() =

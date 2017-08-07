@@ -7,16 +7,17 @@ open System.Linq
 
 type PinAuthViewModel() = 
     let correctPin = seq [ '1'; '2'; '3'; '4' ]
+
     let pinViewModel = PinViewModel(TargetPinLength = 4,
                                     ValidatorFunc = fun arg -> 
-                                        Enumerable.SequenceEqual(arg,correctPin))
-    
+                                        Enumerable.SequenceEqual(arg, correctPin))
+
     do 
         let hdlr =
             EventHandler(
                 fun sender args -> 
-                    Debug.WriteLine("Success. Assume page will be closed automatically.")
+                    Debug.WriteLine "Success. Assume page will be closed automatically."
             )
-        pinViewModel.Success.AddHandler(hdlr)
-    
+        pinViewModel.Success.AddHandler hdlr
+
     member this.PinViewModel = pinViewModel
