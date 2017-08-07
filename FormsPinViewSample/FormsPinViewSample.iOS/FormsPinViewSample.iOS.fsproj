@@ -6,8 +6,8 @@
     <ProjectGuid>{6B074E2B-34A0-43DA-822D-9C0C365BE1CE}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{F2A71F9B-5D33-465A-A702-920D77279786}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>FormsPinViewFSample.iOS</RootNamespace>
-    <AssemblyName>FormsPinViewFSample.iOS</AssemblyName>
+    <RootNamespace>FormsPinViewSample.iOS</RootNamespace>
+    <AssemblyName>FormsPinViewSample.iOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
@@ -106,10 +106,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FormsPinViewFSample\FormsPinViewFSample.fsproj">
-      <Project>{10C924B4-F85F-4D0B-B0DB-F1A08ABC0AA4}</Project>
-      <Name>FormsPinViewFSample</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\FormsPinView\FormsPinView.iOS\FormsPinView.iOS.csproj">
       <Project>{F0218B13-AC99-4354-A1AA-0DBA60DD879C}</Project>
       <Name>FormsPinView.iOS</Name>
@@ -117,6 +113,10 @@
     <ProjectReference Include="..\..\FormsPinView\FormsPinView.PCL\FormsPinView.PCL.csproj">
       <Project>{47234E81-6556-4545-B23E-56FD0355604F}</Project>
       <Name>FormsPinView.PCL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FormsPinViewSample.PCL\FormsPinViewSample.PCL.fsproj">
+      <Project>{10C924B4-F85F-4D0B-B0DB-F1A08ABC0AA4}</Project>
+      <Name>FormsPinViewSample.PCL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.FSharp.targets" />

@@ -1,6 +1,6 @@
-﻿namespace FormsPinViewFSample
+﻿namespace FormsPinViewSample.PCL
 
-open FormsPinViewFSample.Views
+open FormsPinViewSample.PCL.Views
 open Xamarin.Forms
 
 type App() =
@@ -8,7 +8,7 @@ type App() =
     do
         let rootPage = NavigationPage(MainPage())
         let nextPage = PinAuthPage()
-        rootPage.Navigation.PushModalAsync nextPage |> ignore
+        rootPage.Navigation.PushAsync nextPage |> ignore
         base.MainPage <- rootPage
 
     override this.OnStart() =

@@ -1,4 +1,4 @@
-﻿namespace FormsPinViewFSample.ViewModels
+﻿namespace FormsPinViewSample.PCL.ViewModels
 
 open FormsPinView.PCL
 open System
@@ -6,6 +6,8 @@ open System.Diagnostics
 open System.Linq
 
 type PinAuthViewModel() = 
+    inherit ViewModelBase()
+
     let correctPin = seq [ '1'; '2'; '3'; '4' ]
 
     let pinViewModel = PinViewModel(TargetPinLength = 4,

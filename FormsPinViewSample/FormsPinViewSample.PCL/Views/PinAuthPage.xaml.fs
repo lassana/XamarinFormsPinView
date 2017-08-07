@@ -1,7 +1,7 @@
-﻿namespace FormsPinViewFSample.Views
+﻿namespace FormsPinViewSample.PCL.Views
 
 open System
-open FormsPinViewFSample.ViewModels
+open FormsPinViewSample.PCL.ViewModels
 open Xamarin.Forms
 open Xamarin.Forms.Xaml
 
@@ -14,7 +14,7 @@ type PinAuthPage() as this =
         let viewModel = PinAuthViewModel()
         let handler = 
             EventHandler(fun s o -> 
-                this.Navigation.PopModalAsync() |> ignore
+                this.Navigation.PopAsync() |> ignore
             )
         viewModel.PinViewModel.Success.AddHandler handler
         base.BindingContext <- viewModel

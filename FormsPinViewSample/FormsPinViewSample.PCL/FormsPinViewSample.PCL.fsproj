@@ -6,8 +6,8 @@
     <ProjectGuid>{10C924B4-F85F-4D0B-B0DB-F1A08ABC0AA4}</ProjectGuid>
     <TargetProfile>netcore</TargetProfile>
     <OutputType>Library</OutputType>
-    <RootNamespace>FormsPinViewFSample</RootNamespace>
-    <AssemblyName>FormsPinViewFSample</AssemblyName>
+    <RootNamespace>FormsPinViewSample.PCL</RootNamespace>
+    <AssemblyName>FormsPinViewSample.PCL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkIdentifier>.NETPortable</TargetFrameworkIdentifier>
     <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
@@ -55,10 +55,13 @@
   <ItemGroup>
     <Folder Include="Views\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <None Include="packages.config" />
+    <Compile Include="Models\ModelBase.fs" />
+    <Compile Include="ViewModels\ViewModelBase.fs" />
     <Compile Include="ViewModels\MainViewModel.fs" />
     <Compile Include="ViewModels\PinAuthViewModel.fs" />
     <EmbeddedResource Include="Views\MainPage.xaml">
