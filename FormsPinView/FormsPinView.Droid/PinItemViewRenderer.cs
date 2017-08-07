@@ -11,7 +11,6 @@ namespace FormsPinView.Droid
 {
     public class PinItemViewRenderer : ViewRenderer<PinItemView, AView>
     {
-        private FrameLayout _frame;
         private RippleButton _button;
 
         public static void Init()
@@ -63,11 +62,6 @@ namespace FormsPinView.Droid
         protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
-        }
-
-        protected override AView CreateNativeControl()
-        {
-            return _frame;
         }
 
         private float convertDpToPixel(float dp)

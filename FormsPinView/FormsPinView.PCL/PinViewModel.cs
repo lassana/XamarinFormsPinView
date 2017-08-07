@@ -7,10 +7,9 @@ namespace FormsPinView.PCL
 {
     public class PinViewModel : INotifyPropertyChanged
     {
-
-        public EventHandler<EventArgs> OnSuccess;
-        public EventHandler<EventArgs> OnError;
-        public EventHandler<EventArgs> OnUpdateDisplayedText;
+        public event EventHandler Success;
+        public event EventHandler Error;
+        public event EventHandler DisplayedTextUpdated;
 
         public event PropertyChangedEventHandler PropertyChanged;
         private string _passwordDisplayedText = string.Empty;
@@ -32,7 +31,7 @@ namespace FormsPinView.PCL
             {
                 _targetPinLength = value;
                 RaisePropertyChanged(nameof(TargetPinLength));
-                OnUpdateDisplayedText?.Invoke(this, EventArgs.Empty);
+                DisplayedTextUpdated?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -69,7 +68,7 @@ namespace FormsPinView.PCL
                     if (EnteredPin.Count > 0)
                     {
                         EnteredPin.RemoveAt(EnteredPin.Count - 1);
-                        OnUpdateDisplayedText?.Invoke(this, EventArgs.Empty);
+                        DisplayedTextUpdated?.Invoke(this, EventArgs.Empty);
                     }
                 }
                 else if (EnteredPin.Count < TargetPinLength)
@@ -80,19 +79,19 @@ namespace FormsPinView.PCL
                         if (ValidatorFunc.Invoke(EnteredPin))
                         {
                             EnteredPin.Clear();
-                            OnSuccess?.Invoke(this, EventArgs.Empty);
-                            OnUpdateDisplayedText?.Invoke(this, EventArgs.Empty);
+                            Success?.Invoke(this, EventArgs.Empty);
+                            DisplayedTextUpdated?.Invoke(this, EventArgs.Empty);
                         }
                         else
                         {
                             EnteredPin.Clear();
-                            OnError?.Invoke(this, EventArgs.Empty);
-                            OnUpdateDisplayedText?.Invoke(this, EventArgs.Empty);
+                            Error?.Invoke(this, EventArgs.Empty);
+                            DisplayedTextUpdated?.Invoke(this, EventArgs.Empty);
                         }
                     }
                     else
                     {
-                        OnUpdateDisplayedText?.Invoke(this, EventArgs.Empty);
+                        DisplayedTextUpdated?.Invoke(this, EventArgs.Empty);
                     }
                 }
             });

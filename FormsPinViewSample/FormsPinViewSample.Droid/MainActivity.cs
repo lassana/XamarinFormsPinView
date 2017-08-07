@@ -8,6 +8,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using FormsPinView.Droid;
+using FormsPinViewSample.PCL;
 
 namespace FormsPinViewSample.Droid
 {
