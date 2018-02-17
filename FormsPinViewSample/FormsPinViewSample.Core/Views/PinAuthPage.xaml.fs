@@ -1,7 +1,7 @@
-﻿namespace FormsPinViewSample.PCL.Views
+﻿namespace FormsPinViewSample.Core.Views
 
 open System
-open FormsPinViewSample.PCL.ViewModels
+open FormsPinViewSample.Core.ViewModels
 open Xamarin.Forms
 open Xamarin.Forms.Xaml
 

@@ -1,7 +1,11 @@
-﻿namespace FormsPinViewSample.PCL
+﻿namespace FormsPinViewSample.Core
 
-open FormsPinViewSample.PCL.Views
+open FormsPinViewSample.Core.Views
 open Xamarin.Forms
+open Xamarin.Forms.Xaml
+
+[<assembly: XamlCompilation(XamlCompilationOptions.Compile)>]
+do ()
 
 type App() =
     inherit Application()

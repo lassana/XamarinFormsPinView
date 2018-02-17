@@ -1,4 +1,4 @@
-﻿namespace FormsPinViewSample.PCL.Models
+﻿namespace FormsPinViewSample.Core.Models
 
 open System
 open System.ComponentModel

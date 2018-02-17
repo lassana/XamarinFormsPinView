@@ -2,7 +2,7 @@
 
 open UIKit
 open FormsPinView.iOS
-open FormsPinViewSample.PCL
+open FormsPinViewSample.Core
 open Foundation
 open Xamarin.Forms
 open Xamarin.Forms.Platform.iOS

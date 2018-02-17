@@ -1,4 +1,4 @@
-﻿namespace FormsPinViewSample.PCL.ViewModels
+﻿namespace FormsPinViewSample.Core.ViewModels
 
 open FormsPinView.PCL
 open System
