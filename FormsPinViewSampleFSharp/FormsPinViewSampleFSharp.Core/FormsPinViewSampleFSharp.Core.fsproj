@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
+    <PackageReference Include="FormsPinView" Version="1.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\ModelBase.fs" />
+    <Compile Include="ViewModels\ViewModelBase.fs" />
+    <Compile Include="ViewModels\MainViewModel.fs" />
+    <Compile Include="ViewModels\PinAuthViewModel.fs" />
+    <Compile Include="Views\MainPage.xaml.fs" />
+    <Compile Include="Views\PinAuthPage.xaml.fs" />
+    <Compile Include="App.xaml.fs" />
+  </ItemGroup>
+</Project>

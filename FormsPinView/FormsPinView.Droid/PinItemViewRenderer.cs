@@ -15,10 +15,10 @@ namespace FormsPinView.Droid
 
         public static void Init()
         {
-            //var t = typeof(PinItemViewRenderer);
+            var t = typeof(PinItemViewRenderer);
         }
 
-        public PinItemViewRenderer()
+        public PinItemViewRenderer(Android.Content.Context context) : base(context)
         {
         }
 
@@ -35,7 +35,7 @@ namespace FormsPinView.Droid
             {
                 if (Control == null)
                 {
-                    var sideSize = (int)convertDpToPixel(44);
+                    var sideSize = (int)ConvertDpToPixel(44);
 
                     _button = new RippleButton(Context);
                     _button.SetWidth(sideSize);
@@ -64,7 +64,7 @@ namespace FormsPinView.Droid
             base.OnElementPropertyChanged(sender, e);
         }
 
-        private float convertDpToPixel(float dp)
+        private float ConvertDpToPixel(float dp)
         {
             float density = Context.Resources.DisplayMetrics.Density;
             return (int)Math.Round((float)dp * density);
