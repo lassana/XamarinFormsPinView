@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsPinViewSample.CSharp.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsPinViewSample.CSharp.Droid", "FormsPinViewSampleCSharp\FormsPinViewSample.CSharp.Droid\FormsPinViewSample.CSharp.Droid.csproj", "{0F6CC08A-2A45-4CD2-B800-C585C2B60DE1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{084C6A4F-C6DF-4404-B3AB-F5C36A4CD053}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsPinView.PCL.Tests", "Tests\FormsPinView.PCL.Tests\FormsPinView.PCL.Tests.csproj", "{0F1C6637-D262-4EC6-BB67-91C353C5D911}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +133,18 @@ Global
 		{0F6CC08A-2A45-4CD2-B800-C585C2B60DE1}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{0F6CC08A-2A45-4CD2-B800-C585C2B60DE1}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{0F6CC08A-2A45-4CD2-B800-C585C2B60DE1}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{0F1C6637-D262-4EC6-BB67-91C353C5D911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F1C6637-D262-4EC6-BB67-91C353C5D911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F1C6637-D262-4EC6-BB67-91C353C5D911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F1C6637-D262-4EC6-BB67-91C353C5D911}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F1C6637-D262-4EC6-BB67-91C353C5D911}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{0F1C6637-D262-4EC6-BB67-91C353C5D911}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{0F1C6637-D262-4EC6-BB67-91C353C5D911}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{0F1C6637-D262-4EC6-BB67-91C353C5D911}.Release|iPhone.Build.0 = Release|Any CPU
+		{0F1C6637-D262-4EC6-BB67-91C353C5D911}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{0F1C6637-D262-4EC6-BB67-91C353C5D911}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{0F1C6637-D262-4EC6-BB67-91C353C5D911}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{0F1C6637-D262-4EC6-BB67-91C353C5D911}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{47234E81-6556-4545-B23E-56FD0355604F} = {17DB4187-0C67-4A2F-9C18-A46404913569}
@@ -139,6 +155,7 @@ Global
 		{E335718B-476E-41A3-8079-57CEC882DB98} = {C119960A-EA3D-4AEC-ABE3-254B45C7CF79}
 		{96C62076-BFE0-461D-A216-76222066175B} = {C0762720-45D1-4F3F-B7EE-AFAD66530FE9}
 		{0F6CC08A-2A45-4CD2-B800-C585C2B60DE1} = {C0762720-45D1-4F3F-B7EE-AFAD66530FE9}
+		{0F1C6637-D262-4EC6-BB67-91C353C5D911} = {084C6A4F-C6DF-4404-B3AB-F5C36A4CD053}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0

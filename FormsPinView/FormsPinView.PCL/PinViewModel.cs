@@ -5,37 +5,52 @@ using Xamarin.Forms;
 
 namespace FormsPinView.PCL
 {
+    /// <summary>
+    /// The PivView ViewModel.
+    /// </summary>
     public class PinViewModel : INotifyPropertyChanged
     {
-        public event EventHandler Success;
-        public event EventHandler Error;
-        public event EventHandler DisplayedTextUpdated;
+        /// <summary>
+        /// Occurs when user enters a corrct PIN.
+        /// </summary>
+        public event EventHandler<EventArgs> Success;
 
+        /// <summary>
+        /// Occurs when user enters an incorrect pin.
+        /// </summary>
+        public event EventHandler<EventArgs> Error;
+
+        /// <summary>
+        /// Occurs when user presses a button and displayed text is updated.
+        /// </summary>
+        public event EventHandler<EventArgs> DisplayedTextUpdated;
+
+        /// <summary>
+        /// Occurs when the ViewModel property changed.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        private string _passwordDisplayedText = string.Empty;
-        public string PasswordDisplayedText
-        {
-            get { return _passwordDisplayedText; }
-            private set
-            {
-                _passwordDisplayedText = value;
-                RaisePropertyChanged(nameof(PasswordDisplayedText));
-            }
-        }
 
-        private int _targetPinLength;
+        private int _targetPinLength = 4; // default is 4
+        /// <summary>
+        /// Gets or sets the length of the PIN.
+        /// </summary>
         public int TargetPinLength
         {
             get { return _targetPinLength; }
             set
             {
-                _targetPinLength = value;
+                _targetPinLength = value > 0
+                    ? value
+                    : throw new ArgumentException("TargetPinLength must be a positive value");
                 RaisePropertyChanged(nameof(TargetPinLength));
                 DisplayedTextUpdated?.Invoke(this, EventArgs.Empty);
             }
         }
 
         private Func<IList<char>, bool> _validatorFunc;
+        /// <summary>
+        /// Gets or sets the validator function.
+        /// </summary>
         public Func<IList<char>, bool> ValidatorFunc
         {
             get { return _validatorFunc; }
@@ -47,6 +62,10 @@ namespace FormsPinView.PCL
         }
 
         private IList<char> _enteredPin = new List<char>();
+        /// <summary>
+        /// Gets or sets the entered PIN.
+        /// </summary>
+        /// <value>The entered pin.</value>
         public IList<char> EnteredPin
         {
             get { return _enteredPin; }
@@ -57,8 +76,14 @@ namespace FormsPinView.PCL
             }
         }
 
+        /// <summary>
+        /// Gets the "key pressed" command.
+        /// </summary>
         public Command<string> KeyPressCommand { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:FormsPinView.PCL.PinViewModel"/> class.
+        /// </summary>
         public PinViewModel()
         {
             KeyPressCommand = new Command<string>(arg =>
@@ -97,6 +122,10 @@ namespace FormsPinView.PCL
             });
         }
 
+        /// <summary>
+        /// Raises the PropertyChanged event.
+        /// </summary>
+        /// <param name="propertyNames">Properties names.</param>
         protected void RaisePropertyChanged(params string[] propertyNames)
         {
             if (PropertyChanged != null && propertyNames != null)

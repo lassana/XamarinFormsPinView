@@ -3,11 +3,17 @@ using Xamarin.Forms;
 
 namespace FormsPinView.PCL
 {
+    /// <summary>
+    /// The PIN view.
+    /// </summary>
     public partial class PinView : ContentView
     {
         private readonly ImageSource _emptyCircle;
         private readonly ImageSource _filledCircle;
 
+        /// <summary>
+        /// Gets or sets the view title.
+        /// </summary>
         public string Title
         {
             get { return titleLabel.Text; }
