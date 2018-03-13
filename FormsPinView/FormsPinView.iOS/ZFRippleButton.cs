@@ -95,11 +95,18 @@ namespace FormsPinView.iOS
 
             _rippleBackgroundView.BackgroundColor = RippleBackgroundColor;
             _rippleBackgroundView.Frame = Bounds;
-            Layer.AddSublayer(_rippleBackgroundView.Layer);
 
-            _rippleBackgroundView.Layer.AddSublayer(_rippleView.Layer);
+            /*
+             * Do not use sublayers as it can produce unexpected NSInternalInconsistencyException
+             * crashes: https://github.com/zoonooz/ZFRippleButton/issues/23
+             * 
+             * Layer.AddSublayer(_rippleBackgroundView.Layer);
+             * _rippleBackgroundView.Layer.AddSublayer(_rippleView.Layer);
+             */
+            _rippleBackgroundView.AddSubview(_rippleView);
+            AddSubview(_rippleBackgroundView);
+
             _rippleBackgroundView.Alpha = 0;
-
 
             Layer.ShadowRadius = 0;
             Layer.ShadowOffset = new CGSize(width: 0, height: 1);
