@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>FormsPinViewSample.Droid</RootNamespace>
     <AssemblyName>FormsPinViewSample.Droid</AssemblyName>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -108,10 +108,10 @@
       <HintPath>..\..\packages\Xamarin.Forms.2.5.0.280555\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="FormsPinView.Droid">
-      <HintPath>..\..\packages\FormsPinView.1.1.0\lib\MonoAndroid10\FormsPinView.Droid.dll</HintPath>
+      <HintPath>..\..\packages\FormsPinView.1.1.1-pre1\lib\MonoAndroid10\FormsPinView.Droid.dll</HintPath>
     </Reference>
     <Reference Include="FormsPinView.PCL">
-      <HintPath>..\..\packages\FormsPinView.1.1.0\lib\MonoAndroid10\FormsPinView.PCL.dll</HintPath>
+      <HintPath>..\..\packages\FormsPinView.1.1.1-pre1\lib\MonoAndroid10\FormsPinView.PCL.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata minClientVersion="2.8.1">
         <id>FormsPinView</id>
-        <version>1.1.0</version>
+        <version>1.1.1-pre1</version>
         <title>PIN keyboard for Xamarin.Forms</title>
         <authors>Nikolai Doronin</authors>
         <owners>Nikolai Doronin</owners>
@@ -10,7 +10,7 @@
         <projectUrl>https://github.com/lassana/XamarinFormsPinView</projectUrl>
         <iconUrl>https://raw.githubusercontent.com/jamesmontemagno/Xamarin-Templates/master/Plugins-Templates/icons/plugin_icon_nuget.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>A Xamarin.Forms UI control which is designed to be used as PIN keyboard. Built against: 2.3.4.247</description>
+        <description>A Xamarin.Forms UI control which is designed to be used as PIN keyboard. Built against: 2.5.0.280555</description>
         <summary>Custom control for Xamarin.Forms projects that provides to users simple and clear way to enter numeric key.</summary>
         <tags>xamarin, netstandard, android, xamarin.forms, ios</tags>
         <dependencies>
@@ -31,6 +31,10 @@
     </files>
     <!--
     # macOS publishing process:
+    # At first update:
+    # - FormsPinView/FormsPinView.Droid/Properties/AssemblyInfo.cs
+    # - FormsPinView/FormsPinView.iOS/Properties/AssemblyInfo.cs
+    # - FormsPinView/FormsPinView.PCL/FormsPinView.PCL.csproj
     $ nuget restore
     $ msbuild /p:Configuration=Release /t:Build FormsPinView/FormsPinView.PCL/FormsPinView.PCL.csproj
     $ msbuild /p:Configuration=Release /t:Build FormsPinView/FormsPinView.iOS/FormsPinView.iOS.csproj
