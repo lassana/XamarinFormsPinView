@@ -8,7 +8,7 @@
     
     _OR_
     
-    add [FormsPinView.PCL](FormsPinView/FormsPinView.PCL), [FormsPinView.iOS](FormsPinView/FormsPinView.iOS), and [FormsPinView.Droid](FormsPinView/FormsPinView.Droid) to your solution.
+    add [FormsPinView.Core](FormsPinView/FormsPinView.Core), [FormsPinView.iOS](FormsPinView/FormsPinView.iOS), and [FormsPinView.Droid](FormsPinView/FormsPinView.Droid) to your solution.
 1. Initialize iOS and Android renderers:
 
         // iOS:
@@ -27,43 +27,32 @@
             PinItemViewRenderer.Init();
         }
 
-1. Add PinView to your page:
+1. Add `PinView` to your page:
         
         ...
-        xmlns:local="clr-namespace:FormsPinView.PCL;assembly=FormsPinView.PCL"
+        xmlns:local="clr-namespace:FormsPinView.Core;assembly=FormsPinView.Core"
         ...
             <local:PinView
-                Title="🔐 Enter your PIN"
                 HorizontalOptions="CenterAndExpand"
                 VerticalOptions="CenterAndExpand"
-                BindingContext="{Binding PinViewModel}" />
+                TargetPinLength="4"
+                Validator="{Binding ValidatorFunc}"
+                Success="Handle_Success" />
         
-1. `PinView` is MVVM-ready, so you may inherit from `PinViewModel`:
+1. `PinView` is MVVM-ready, so you can bind the following properties:
 
-
-        public class YourPageViewModel
-        {
-            ...
-            
-            public PinViewModel PinViewModel { get; private set; } = new PinViewModel
-            {
-                TargetPinLength = 4,
-                ValidatorFunc = (arg) => 
-                {
-                    //TODO Check entered pin
-                    return true;
-                }
-            };
-            
-            ...
-        }
+- `Validator` (`Func<IList<char>, bool>`) - you should check entered PIN there; required
+- `TargetPinLength` (`int`) - The PIN length; default is 4
+- `EmptyCircleImage` (`ImageSource`) - not entered symbol representation; default is black empty circle
+- `FilledCircleImage` (`ImageSource`) - entered symbol representation; default is black filled circle
 
 ## TODO
 
-[ ] `AbsoluteLayout` instead of `Grid`
+[ ] Use `AbsoluteLayout` instead of `Grid`
 [ ] Colorizing
 [ ] Randomizing the numbers order
-[ ] Nightly NuGets
+[ ] CI builds
+[ ] UI tests
 
 ## Changelog
 
