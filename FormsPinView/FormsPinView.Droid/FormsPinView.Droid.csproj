@@ -80,12 +80,6 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\..\packages\Xamarin.Forms.2.5.0.280555\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="FormsPinView.Droid">
-      <HintPath>..\..\packages\FormsPinView.1.1.0\lib\MonoAndroid10\FormsPinView.Droid.dll</HintPath>
-    </Reference>
-    <Reference Include="FormsPinView.Core">
-      <HintPath>..\..\packages\FormsPinView.1.1.0\lib\MonoAndroid10\FormsPinView.Core.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -106,11 +100,6 @@
     <AndroidResource Include="Resources\drawable\img_circle_filled.png" />
     <AndroidResource Include="Resources\drawable\img_circle.png" />
     <AndroidResource Include="Resources\drawable\bkg_roundedview.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\drawable\" />
-    <Folder Include="Resources\drawable-hdpi\" />
-    <Folder Include="Resources\drawable-xhdpi\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FormsPinView.Core\FormsPinView.Core.csproj">
