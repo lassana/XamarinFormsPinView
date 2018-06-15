@@ -7,13 +7,14 @@
     <ContentPage.Content>
         <StackLayout
             Orientation="Vertical"
+            VerticalOptions="CenterAndExpand"
             Padding="0">
             <Label
                 Text="🔐 Enter your PIN" 
-                HorizontalTextAlignment="Center" />
+                HorizontalTextAlignment="Center"
+                TextColor="Black" />
             <pin:PinView
                 HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand"
                 TargetPinLength="4"
                 Validator="{Binding ValidatorFunc}"
                 Success="Handle_Success" />

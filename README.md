@@ -58,6 +58,13 @@
             ...
         }
 
+## TODO
+
+[ ] `AbsoluteLayout` instead of `Grid`
+[ ] Colorizing
+[ ] Randomizing the numbers order
+[ ] Nightly NuGets
+
 ## Changelog
 
 ### 2.0-pre1 (coming soon)

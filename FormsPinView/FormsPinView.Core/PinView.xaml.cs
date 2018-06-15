@@ -57,7 +57,7 @@ namespace FormsPinView.Core
                     throw new ArgumentException("TargetPinLength must be a positive value");
                 }
                 SetValue(TargetPinLengthProperty, value);
-                DisplayedTextUpdated?.Invoke(this, EventArgs.Empty);
+                UpdateDisplayedText(resetUI: true);
             }
         }
 
@@ -76,7 +76,7 @@ namespace FormsPinView.Core
             set
             {
                 SetValue(EmptyCircleImageProperty, value);
-                DisplayedTextUpdated?.Invoke(this, EventArgs.Empty);
+                UpdateDisplayedText(resetUI: true);
             }
         }
 
@@ -95,7 +95,7 @@ namespace FormsPinView.Core
             set
             {
                 SetValue(FilledCircleImageProperty, value);
-                DisplayedTextUpdated?.Invoke(this, EventArgs.Empty);
+                UpdateDisplayedText(resetUI: true);
             }
         }
 
@@ -148,10 +148,6 @@ namespace FormsPinView.Core
         {
             InitializeComponent();
 
-            // we don't have to unsubscribe
-            Error += (sender, e) => DoErrorAnimation();
-            DisplayedTextUpdated += (sender, e) => UpdateDisplayedText();
-
             KeyPressedCommand = new Command<string>(arg =>
             {
                 if (Validator == null)
@@ -164,7 +160,7 @@ namespace FormsPinView.Core
                     if (EnteredPin.Count > 0)
                     {
                         EnteredPin.RemoveAt(EnteredPin.Count - 1);
-                        DisplayedTextUpdated?.Invoke(this, EventArgs.Empty);
+                        UpdateDisplayedText(resetUI: false);
                     }
                 }
                 else if (EnteredPin.Count < TargetPinLength)
@@ -175,19 +171,19 @@ namespace FormsPinView.Core
                         if (Validator.Invoke(EnteredPin))
                         {
                             EnteredPin.Clear();
-                            Success?.Invoke(this, EventArgs.Empty);
-                            DisplayedTextUpdated?.Invoke(this, EventArgs.Empty);
+                            UpdateDisplayedText(resetUI: false);
+                            RaiseSuccess();
                         }
                         else
                         {
                             EnteredPin.Clear();
-                            Error?.Invoke(this, EventArgs.Empty);
-                            DisplayedTextUpdated?.Invoke(this, EventArgs.Empty);
+                            UpdateDisplayedText(resetUI: false);
+                            RaiseError();
                         }
                     }
                     else
                     {
-                        DisplayedTextUpdated?.Invoke(this, EventArgs.Empty);
+                        UpdateDisplayedText(resetUI: false);
                     }
                 }
             });
@@ -199,12 +195,14 @@ namespace FormsPinView.Core
                     pinItem.Command = KeyPressedCommand;
                 }
             }
+
+            UpdateDisplayedText(resetUI: true);
         }
 
         /// <summary>
         /// Updates the displayed PIN icons.
         /// </summary>
-        protected virtual void UpdateDisplayedText()
+        protected void UpdateDisplayedText(bool resetUI)
         {
             if (TargetPinLength <= 0)
             {
@@ -213,40 +211,41 @@ namespace FormsPinView.Core
                                                     $" is not a positive value but {TargetPinLength}");
             }
 
-            if (EnteredPin != null)
+            if (resetUI || circlesStackLayout.Children.Count == 0)
             {
-                if (circlesStackLayout.Children.Count == 0)
+                circlesStackLayout.Children.Clear();
+                for (int i = 0; i < TargetPinLength; ++i)
                 {
-                    for (int i = 0; i < TargetPinLength; ++i)
+                    circlesStackLayout.Children.Add(new Image
                     {
-                        circlesStackLayout.Children.Add(new Image
-                        {
-                            Source = EmptyCircleImage,
-                            HeightRequest = 28,
-                            WidthRequest = 28,
-                            MinimumWidthRequest = 28,
-                            MinimumHeightRequest = 28
-                        });
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < EnteredPin.Count; ++i)
-                    {
-                        (circlesStackLayout.Children[i] as Image).Source = FilledCircleImage;
-                    }
-                    for (int i = EnteredPin.Count; i < TargetPinLength; ++i)
-                    {
-                        (circlesStackLayout.Children[i] as Image).Source = EmptyCircleImage;
-                    }
+                        Source = EmptyCircleImage,
+                        HeightRequest = 28,
+                        WidthRequest = 28,
+                        MinimumWidthRequest = 28,
+                        MinimumHeightRequest = 28
+                    });
                 }
             }
+
+            if (EnteredPin != null)
+            {
+                for (int i = 0; i < EnteredPin.Count; ++i)
+                {
+                    (circlesStackLayout.Children[i] as Image).Source = FilledCircleImage;
+                }
+                for (int i = EnteredPin.Count; i < TargetPinLength; ++i)
+                {
+                    (circlesStackLayout.Children[i] as Image).Source = EmptyCircleImage;
+                }
+            }
+
+            DisplayedTextUpdated?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
-        /// "Shakes" the PIN view.
+        /// "Shakes" the PIN view and raises the <code>Success</code> event.
         /// </summary>
-        protected virtual void DoErrorAnimation()
+        protected void RaiseError()
         {
             this.AbortAnimation("shake");
             this.Animate("shake",
@@ -262,6 +261,15 @@ namespace FormsPinView.Core
                          {
                              this.TranslationX = 0;
                          });
+            Error?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Raises the <code>Success</code> event.
+        /// </summary>
+        protected void RaiseSuccess()
+        {
+            Success?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
