@@ -1,10 +1,10 @@
-﻿using FormsPinView.Droid;
-using FormsPinView.PCL;
+﻿using System;
+using Android.Widget;
+using FormsPinView.Core;
+using FormsPinView.Droid;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android.AppCompat;
 using AView = Android.Views.View;
-using Android.Widget;
-using System;
 
 [assembly: ExportRenderer(typeof(PinItemView), typeof(PinItemViewRenderer))]
 namespace FormsPinView.Droid
@@ -15,7 +15,7 @@ namespace FormsPinView.Droid
 
         public static void Init()
         {
-            var t = typeof(PinItemViewRenderer);
+            _ = typeof(PinItemViewRenderer);
         }
 
         public PinItemViewRenderer(Android.Content.Context context) : base(context)

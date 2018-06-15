@@ -2,13 +2,21 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pin="clr-namespace:FormsPinView.PCL;assembly=FormsPinView.PCL"
+    xmlns:pin="clr-namespace:FormsPinView.Core;assembly=FormsPinView.Core"
     x:Class="FormsPinViewSample.Core.Views.PinAuthPage">
     <ContentPage.Content>
-        <pin:PinView
-            Title="🔐 Enter your PIN"
-            HorizontalOptions="CenterAndExpand"
-            VerticalOptions="CenterAndExpand"
-            BindingContext="{Binding PinViewModel}" />
+        <StackLayout
+            Orientation="Vertical"
+            Padding="0">
+            <Label
+                Text="🔐 Enter your PIN" 
+                HorizontalTextAlignment="Center" />
+            <pin:PinView
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                TargetPinLength="4"
+                Validator="{Binding ValidatorFunc}"
+                Success="Handle_Success" />
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

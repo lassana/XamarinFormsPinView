@@ -83,8 +83,8 @@
     <Reference Include="FormsPinView.Droid">
       <HintPath>..\..\packages\FormsPinView.1.1.0\lib\MonoAndroid10\FormsPinView.Droid.dll</HintPath>
     </Reference>
-    <Reference Include="FormsPinView.PCL">
-      <HintPath>..\..\packages\FormsPinView.1.1.0\lib\MonoAndroid10\FormsPinView.PCL.dll</HintPath>
+    <Reference Include="FormsPinView.Core">
+      <HintPath>..\..\packages\FormsPinView.1.1.0\lib\MonoAndroid10\FormsPinView.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +111,12 @@
     <Folder Include="Resources\drawable\" />
     <Folder Include="Resources\drawable-hdpi\" />
     <Folder Include="Resources\drawable-xhdpi\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FormsPinView.Core\FormsPinView.Core.csproj">
+      <Project>{47234E81-6556-4545-B23E-56FD0355604F}</Project>
+      <Name>FormsPinView.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />
