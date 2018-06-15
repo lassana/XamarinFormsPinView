@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace FormsPinView.Core
@@ -38,34 +39,38 @@ namespace FormsPinView.Core
 
         #region Bindable properties
 
-        public static readonly BindableProperty TargetPinLengthProperty =
-            BindableProperty.Create(propertyName: nameof(TargetPinLength),
+        public static readonly BindableProperty PinLengthProperty =
+            BindableProperty.Create(propertyName: nameof(PinLength),
                                     returnType: typeof(int),
                                     declaringType: typeof(PinView),
-                                    defaultValue: DefaultPinLength);
+                                    defaultValue: DefaultPinLength,
+                                    propertyChanged: HandlePinLengthChanged);
 
         /// <summary>
         /// Gets or sets the length of the PIN.
         /// </summary>
-        public int TargetPinLength
+        public int PinLength
         {
-            get { return (int)GetValue(TargetPinLengthProperty); }
-            set
+            get { return (int)GetValue(PinLengthProperty); }
+            set { SetValue(PinLengthProperty, value); }
+        }
+
+        private static void HandlePinLengthChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if ((int)newValue <= 0)
             {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("TargetPinLength must be a positive value");
-                }
-                SetValue(TargetPinLengthProperty, value);
-                UpdateDisplayedText(resetUI: true);
+                throw new ArgumentException("TargetPinLength must be a positive value");
             }
+            ((PinView)bindable).EnteredPin.Clear();
+            ((PinView)bindable).UpdateDisplayedText(resetUI: true);
         }
 
         public static readonly BindableProperty EmptyCircleImageProperty =
             BindableProperty.Create(propertyName: nameof(EmptyCircleImage),
                                     returnType: typeof(ImageSource),
                                     declaringType: typeof(PinView),
-                                    defaultValue: new FileImageSource { File = DefaultEmptyCircleImage });
+                                    defaultValue: new FileImageSource { File = DefaultEmptyCircleImage },
+                                    propertyChanged: HandleCircleImageChanged);
 
         /// <summary>
         /// Gets or sets the ImageSource of the <i>empty</i> item icon.
@@ -76,7 +81,7 @@ namespace FormsPinView.Core
             set
             {
                 SetValue(EmptyCircleImageProperty, value);
-                UpdateDisplayedText(resetUI: true);
+
             }
         }
 
@@ -84,7 +89,8 @@ namespace FormsPinView.Core
             BindableProperty.Create(propertyName: nameof(FilledCircleImage),
                                     returnType: typeof(ImageSource),
                                     declaringType: typeof(PinView),
-                                    defaultValue: new FileImageSource { File = DefaultFilledCircleImage });
+                                    defaultValue: new FileImageSource { File = DefaultFilledCircleImage },
+                                    propertyChanged: HandleCircleImageChanged);
 
         /// <summary>
         /// Gets or sets the ImageSource of the <i>filled</i> item icon.
@@ -97,6 +103,11 @@ namespace FormsPinView.Core
                 SetValue(FilledCircleImageProperty, value);
                 UpdateDisplayedText(resetUI: true);
             }
+        }
+
+        private static void HandleCircleImageChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((PinView)bindable).UpdateDisplayedText(resetUI: true);
         }
 
         public static readonly BindableProperty ValidatorProperty =
@@ -112,6 +123,36 @@ namespace FormsPinView.Core
         {
             get { return (Func<IList<char>, bool>)GetValue(ValidatorProperty); }
             set { SetValue(ValidatorProperty, value); }
+        }
+
+        public static readonly BindableProperty SuccessCommandProperty =
+            BindableProperty.Create(propertyName: nameof(SuccessCommand),
+                                    returnType: typeof(ICommand),
+                                    declaringType: typeof(PinView),
+                                    defaultValue: null);
+
+        /// <summary>
+        /// Gets or sets a command which invokes when the correct PIN is entered.
+        /// </summary>
+        public ICommand SuccessCommand
+        {
+            get { return (ICommand)GetValue(SuccessCommandProperty); }
+            set { SetValue(SuccessCommandProperty, value); }
+        }
+
+        public static readonly BindableProperty ErrorCommandProperty =
+            BindableProperty.Create(propertyName: nameof(ErrorCommand),
+                                    returnType: typeof(ICommand),
+                                    declaringType: typeof(PinView),
+                                    defaultValue: null);
+
+        /// <summary>
+        /// Gets or sets a command which invokes when an incorrect PIN is entered.
+        /// </summary>
+        public ICommand ErrorCommand
+        {
+            get { return (ICommand)GetValue(ErrorCommandProperty); }
+            set { SetValue(ErrorCommandProperty, value); }
         }
 
         #endregion
@@ -163,10 +204,10 @@ namespace FormsPinView.Core
                         UpdateDisplayedText(resetUI: false);
                     }
                 }
-                else if (EnteredPin.Count < TargetPinLength)
+                else if (EnteredPin.Count < PinLength)
                 {
                     EnteredPin.Add(arg[0]);
-                    if (EnteredPin.Count == TargetPinLength)
+                    if (EnteredPin.Count == PinLength)
                     {
                         if (Validator.Invoke(EnteredPin))
                         {
@@ -204,17 +245,17 @@ namespace FormsPinView.Core
         /// </summary>
         protected void UpdateDisplayedText(bool resetUI)
         {
-            if (TargetPinLength <= 0)
+            if (PinLength <= 0)
             {
                 // not expected to happen
-                throw new InvalidOperationException($"{TargetPinLengthProperty.PropertyName} property" +
-                                                    $" is not a positive value but {TargetPinLength}");
+                throw new InvalidOperationException($"{PinLengthProperty.PropertyName} property" +
+                                                    $" is not a positive value but {PinLength}");
             }
 
             if (resetUI || circlesStackLayout.Children.Count == 0)
             {
                 circlesStackLayout.Children.Clear();
-                for (int i = 0; i < TargetPinLength; ++i)
+                for (int i = 0; i < PinLength; ++i)
                 {
                     circlesStackLayout.Children.Add(new Image
                     {
@@ -233,7 +274,7 @@ namespace FormsPinView.Core
                 {
                     (circlesStackLayout.Children[i] as Image).Source = FilledCircleImage;
                 }
-                for (int i = EnteredPin.Count; i < TargetPinLength; ++i)
+                for (int i = EnteredPin.Count; i < PinLength; ++i)
                 {
                     (circlesStackLayout.Children[i] as Image).Source = EmptyCircleImage;
                 }
@@ -261,7 +302,17 @@ namespace FormsPinView.Core
                          {
                              this.TranslationX = 0;
                          });
-            Error?.Invoke(this, EventArgs.Empty);
+
+            var error = Error;
+            var errorCommand = ErrorCommand;
+
+            if (error != null)
+                error.Invoke(this, EventArgs.Empty);
+            
+            if (errorCommand != null && errorCommand.CanExecute(null))
+            {
+                errorCommand.Execute(null);
+            }
         }
 
         /// <summary>
@@ -269,7 +320,16 @@ namespace FormsPinView.Core
         /// </summary>
         protected void RaiseSuccess()
         {
-            Success?.Invoke(this, EventArgs.Empty);
+            var success = Success;
+            var successCommand = SuccessCommand;
+
+            if (success != null)
+                success.Invoke(this, EventArgs.Empty);
+
+            if (successCommand != null && successCommand.CanExecute(null))
+            {
+                successCommand.Execute(null);
+            }
         }
 
         /// <summary>

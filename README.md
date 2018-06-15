@@ -42,9 +42,11 @@
 1. `PinView` is MVVM-ready, so you can bind the following properties:
 
 - `Validator` (`Func<IList<char>, bool>`) - you should check entered PIN there; required
-- `TargetPinLength` (`int`) - The PIN length; default is 4
+- `PinLength` (`int`) - The PIN length; default is 4
 - `EmptyCircleImage` (`ImageSource`) - not entered symbol representation; default is black empty circle
 - `FilledCircleImage` (`ImageSource`) - entered symbol representation; default is black filled circle
+- `SuccessCommand` (`ICommand`) - invokes when the correct PIN is entered
+- `ErrorCommand` (`ICommand`) - invokes when an incorrect PIN is entered
 
 ## TODO
 

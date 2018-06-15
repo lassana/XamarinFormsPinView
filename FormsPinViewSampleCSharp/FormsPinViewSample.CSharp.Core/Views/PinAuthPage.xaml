@@ -9,15 +9,21 @@
             Orientation="Vertical"
             VerticalOptions="CenterAndExpand"
             Padding="0">
+            <Button
+                HorizontalOptions="Center"
+                Text="Switch PIN length"
+                Command="{Binding SwitchPinLengthCommand}" />
             <Label
                 Text="🔐 Enter your PIN" 
                 HorizontalTextAlignment="Center"
                 TextColor="Black" />
             <pin:PinView
                 HorizontalOptions="CenterAndExpand"
-                TargetPinLength="4"
+                PinLength="{Binding PinLength}"
                 Validator="{Binding ValidatorFunc}"
-                Success="Handle_Success" />
+                Success="Handle_Success"
+                ErrorCommand="{Binding ErrorCommand}"
+                SuccessCommand="{Binding SuccessCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

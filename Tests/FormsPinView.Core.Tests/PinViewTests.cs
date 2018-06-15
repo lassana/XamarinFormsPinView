@@ -46,11 +46,38 @@ namespace FormsPinView.Core.Tests
             );
         }
 
+
+        /// <summary>
+        /// Tests if a <code>SuccessCommand</code> is handled correctly.
+        /// </summary>
+        [Fact]
+        public void TestSuccessCommand()
+        {
+            bool invoked = false;
+            var targetPin = new[] { '1', '2', '3', '4' };
+            var view = new PinView
+            {
+                TargetPinLength = 4,
+                Validator = (IList<char> arg) => Enumerable.SequenceEqual(targetPin, arg),
+                SuccessCommand = new Command(() => invoked = true)
+            };
+            Func<string, PinItemView> findButton = (string arg) =>
+            {
+                return ((PinItemView)((Grid)view).Children.First(c => c is PinItemView btn && btn.Text == arg));
+            };
+            foreach (char next in targetPin)
+            {
+                PinItemView btn = findButton(next.ToString());
+                btn.Command.Execute(btn.CommandParameter);
+            }
+            Assert.True(invoked);
+        }
+
         /// <summary>
         /// Tests if an invalid PIN is handled correctly.
         /// </summary>
         [Fact]
-        public void TestincorrectPin()
+        public void TestIncorrectPin()
         {
             var targetPin = new[] { '1', '2', '3', '4' };
             var view = new PinView
@@ -74,6 +101,33 @@ namespace FormsPinView.Core.Tests
                     }
                 }
             );
+        }
+
+
+        /// <summary>
+        /// Tests if a <code>ErrorCommand</code> is handled correctly.
+        /// </summary>
+        [Fact]
+        public void TestErrorCommand()
+        {
+            bool invoked = false;
+            var targetPin = new[] { '1', '2', '3', '4' };
+            var view = new PinView
+            {
+                TargetPinLength = 4,
+                Validator = (IList<char> arg) => Enumerable.SequenceEqual(targetPin, arg),
+                ErrorCommand = new Command(() => invoked = true)
+            };
+            Func<string, PinItemView> findButton = (string arg) =>
+            {
+                return ((PinItemView)((Grid)view).Children.First(c => c is PinItemView btn && btn.Text == arg));
+            };
+            foreach (char next in targetPin.Reverse())
+            {
+                PinItemView btn = findButton(next.ToString());
+                btn.Command.Execute(btn.CommandParameter);
+            }
+            Assert.True(invoked);
         }
 
         /// <summary>
