@@ -16,6 +16,11 @@ namespace FormsPinView.Core.Tests
             Xamarin.Forms.Mocks.MockForms.Init();
         }
 
+        private PinItemView FindButton(PinView view, string text)
+        {
+            return ((PinItemView)(view).Children.First(c => c is PinItemView btn && btn.Text == text));
+        }
+
         /// <summary>
         /// Tests if a valid PIN is handled correctly.
         /// </summary>
@@ -25,12 +30,8 @@ namespace FormsPinView.Core.Tests
             var targetPin = new[] { '1', '2', '3', '4' };
             var view = new PinView
             {
-                TargetPinLength = 4,
+                PinLength = 4,
                 Validator = (IList<char> arg) => Enumerable.SequenceEqual(targetPin, arg)
-            };
-            Func<string, PinItemView> findButton = (string arg) => 
-            {
-                return ((PinItemView)((Grid)view).Children.First(c => c is PinItemView btn && btn.Text == arg));
             };
             Assert.Raises<EventArgs>(
                 (EventHandler<EventArgs> obj) => view.Success += obj,
@@ -39,11 +40,39 @@ namespace FormsPinView.Core.Tests
                 {
                     foreach (char next in targetPin)
                     {
-                        PinItemView btn = findButton(next.ToString());
+                        PinItemView btn = FindButton(view, next.ToString());
                         btn.Command.Execute(btn.CommandParameter);
                     }
                 }
             );
+        }
+
+        /// <summary>
+        /// Tests if all PIN symbols is filled after a valid PIN is entered.
+        /// </summary>
+        [Fact]
+        public void TestCorrectPin_AllSymbolsFilled()
+        {
+            var targetPin = new[] { '1', '2', '3', '4' };
+            var view = new PinView
+            {
+                PinLength = 4,
+                Validator = (IList<char> arg) => Enumerable.SequenceEqual(targetPin, arg),
+                ClearAfterSuccess = false
+            };
+            foreach (char next in targetPin)
+            {
+                PinItemView btn = FindButton(view, next.ToString());
+                btn.Command.Execute(btn.CommandParameter);
+            }
+
+            var sl = (StackLayout)((Grid)view).Children.First(c => c is StackLayout);
+            foreach (View child in sl.Children)
+            {
+                var fis = ((Image)child).Source as FileImageSource;
+                Assert.NotNull(fis);
+                Assert.Equal(view.FilledCircleImage, fis);
+            }
         }
 
 
@@ -57,17 +86,13 @@ namespace FormsPinView.Core.Tests
             var targetPin = new[] { '1', '2', '3', '4' };
             var view = new PinView
             {
-                TargetPinLength = 4,
+                PinLength = 4,
                 Validator = (IList<char> arg) => Enumerable.SequenceEqual(targetPin, arg),
                 SuccessCommand = new Command(() => invoked = true)
             };
-            Func<string, PinItemView> findButton = (string arg) =>
-            {
-                return ((PinItemView)((Grid)view).Children.First(c => c is PinItemView btn && btn.Text == arg));
-            };
             foreach (char next in targetPin)
             {
-                PinItemView btn = findButton(next.ToString());
+                PinItemView btn = FindButton(view, next.ToString());
                 btn.Command.Execute(btn.CommandParameter);
             }
             Assert.True(invoked);
@@ -82,13 +107,13 @@ namespace FormsPinView.Core.Tests
             var targetPin = new[] { '1', '2', '3', '4' };
             var view = new PinView
             {
-                TargetPinLength = 4,
+                PinLength = 4,
                 Validator = (IList<char> arg) => Enumerable.SequenceEqual(targetPin, arg)
             };
-            Func<string, PinItemView> findButton = (string arg) =>
+            PinItemView findButton(string arg)
             {
                 return ((PinItemView)((Grid)view).Children.First(c => c is PinItemView btn && btn.Text == arg));
-            };
+            }
             Assert.Raises<EventArgs>(
                 (EventHandler<EventArgs> obj) => view.Error += obj,
                 (EventHandler<EventArgs> obj) => view.Error -= obj,
@@ -114,46 +139,42 @@ namespace FormsPinView.Core.Tests
             var targetPin = new[] { '1', '2', '3', '4' };
             var view = new PinView
             {
-                TargetPinLength = 4,
+                PinLength = 4,
                 Validator = (IList<char> arg) => Enumerable.SequenceEqual(targetPin, arg),
                 ErrorCommand = new Command(() => invoked = true)
             };
-            Func<string, PinItemView> findButton = (string arg) =>
-            {
-                return ((PinItemView)((Grid)view).Children.First(c => c is PinItemView btn && btn.Text == arg));
-            };
             foreach (char next in targetPin.Reverse())
             {
-                PinItemView btn = findButton(next.ToString());
+                PinItemView btn = FindButton(view, next.ToString());
                 btn.Command.Execute(btn.CommandParameter);
             }
             Assert.True(invoked);
         }
 
         /// <summary>
-        /// Tests the TargetPinLength property: if it's being set and 
+        /// Tests the PinLength property: if it's being set and 
         /// if the corresponding PropertyChanged event is being raised.
         /// </summary>
         [Fact]
-        public void TestTargetPinLengthPropertyChangedRaised()
+        public void TestPinLengthPropertyChangedRaised()
         {
             var pinView = new PinView();
             int expectedValue = 3;
             Assert.PropertyChanged(pinView,
-                                   nameof(PinView.TargetPinLength),
-                                   () => pinView.TargetPinLength = expectedValue);
-            Assert.Equal(expectedValue, pinView.TargetPinLength);
+                                   nameof(PinView.PinLength),
+                                   () => pinView.PinLength = expectedValue);
+            Assert.Equal(expectedValue, pinView.PinLength);
         }
 
         /// <summary>
-        /// Tests the TargetPinLength cannot be set to non-positive value.
+        /// Tests the PinLength cannot be set to non-positive value.
         /// </summary>
         [Fact]
-        public void TestNobPositiveTargetPinLengthException()
+        public void TestNobPositivePinLengthException()
         {
             var pinView = new PinView();
-            Assert.Throws<ArgumentException>(() => { pinView.TargetPinLength = -2; });
-            Assert.Throws<ArgumentException>(() => { pinView.TargetPinLength = 0; });
+            Assert.Throws<ArgumentException>(() => { pinView.PinLength = -2; });
+            Assert.Throws<ArgumentException>(() => { pinView.PinLength = 0; });
         }
 
         /// <summary>
@@ -193,9 +214,11 @@ namespace FormsPinView.Core.Tests
         [Fact]
         public void TestFewSymboldEntered()
         {
-            var pinView = new PinView();
-            pinView.TargetPinLength = 5;
-            pinView.Validator = new Func<IList<char>, bool>((arg) => false);
+            var pinView = new PinView
+            {
+                PinLength = 5,
+                Validator = new Func<IList<char>, bool>((arg) => false)
+            };
             Assert.Raises(
                 (EventHandler<EventArgs> obj) => { pinView.DisplayedTextUpdated += obj; },
                 (EventHandler<EventArgs> obj) => { pinView.DisplayedTextUpdated -= obj; },
@@ -214,9 +237,11 @@ namespace FormsPinView.Core.Tests
         [Fact]
         public void TestBackspacePressed()
         {
-            var pinView = new PinView();
-            pinView.TargetPinLength = 5;
-            pinView.Validator = new Func<IList<char>, bool>((arg) => false);
+            var pinView = new PinView
+            {
+                PinLength = 5,
+                Validator = new Func<IList<char>, bool>((arg) => false)
+            };
             pinView.KeyPressedCommand.Execute("1");
             pinView.KeyPressedCommand.Execute("1");
             pinView.KeyPressedCommand.Execute("2");
@@ -230,9 +255,11 @@ namespace FormsPinView.Core.Tests
         [Fact]
         public void TestErrorRaised()
         {
-            var pinView = new PinView();
-            pinView.TargetPinLength = 5;
-            pinView.Validator = new Func<IList<char>, bool>((arg) => false);
+            var pinView = new PinView
+            {
+                PinLength = 5,
+                Validator = new Func<IList<char>, bool>((arg) => false)
+            };
             pinView.KeyPressedCommand.Execute("1");
             pinView.KeyPressedCommand.Execute("2");
             pinView.KeyPressedCommand.Execute("3");
@@ -248,11 +275,16 @@ namespace FormsPinView.Core.Tests
         /// <summary>
         /// Tests if an valid PIN is being handled correctly.
         /// </summary>
-        [Fact]
-        public void TestDisplayedTextUpdatedRaised()
+        [Theory]
+        [InlineData(true)]
+        [InlineData(false)]
+        public void TestDisplayedTextUpdatedRaised(bool clearAfterSuccess)
         {
-            var pinView = new PinView();
-            pinView.TargetPinLength = 5;
+            var pinView = new PinView
+            {
+                PinLength = 5,
+                ClearAfterSuccess = clearAfterSuccess
+            };
             pinView.Validator = new Func<IList<char>, bool>(
                 (arg) => Enumerable.SequenceEqual(new[] { '1', '2', '3', '4', '5' }, pinView.EnteredPin)
             );
@@ -265,7 +297,11 @@ namespace FormsPinView.Core.Tests
                 (EventHandler<EventArgs> obj) => { pinView.Success -= obj; },
                 () => { pinView.KeyPressedCommand.Execute("5"); }
             );
-            Assert.Empty(pinView.EnteredPin);
+
+            if (clearAfterSuccess)
+                Assert.Empty(pinView.EnteredPin);
+            else
+                Assert.NotEmpty(pinView.EnteredPin);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace FormsPinView.Core
     /// </summary>
     public partial class PinView : Grid
     {
-        #region Fields
+        #region Private fields and properties
 
         private const int DefaultPinLength = 4;
         private const string DefaultEmptyCircleImage = "img_circle.png";
@@ -52,7 +52,14 @@ namespace FormsPinView.Core
         public int PinLength
         {
             get { return (int)GetValue(PinLengthProperty); }
-            set { SetValue(PinLengthProperty, value); }
+            set 
+            { 
+                if ((int)value <= 0)
+                {
+                    throw new ArgumentException("TargetPinLength must be a positive value");
+                }
+                SetValue(PinLengthProperty, value);
+            }
         }
 
         private static void HandlePinLengthChanged(BindableObject bindable, object oldValue, object newValue)
@@ -176,6 +183,12 @@ namespace FormsPinView.Core
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether the entered PIN should be cleaned or not
+        /// after it was confirmed as correct. Default is <code>true</code>.
+        /// </summary>
+        public bool ClearAfterSuccess { get; set; } = true;
+
+        /// <summary>
         /// Gets the "key pressed" command.
         /// </summary>
         public Command<string> KeyPressedCommand { get; }
@@ -211,14 +224,21 @@ namespace FormsPinView.Core
                     {
                         if (Validator.Invoke(EnteredPin))
                         {
-                            EnteredPin.Clear();
+                            if (ClearAfterSuccess)
+                            {
+                                EnteredPin.Clear();
+                            }
+                            // fill the last PIN symbol image
                             UpdateDisplayedText(resetUI: false);
+                            // Raise Success event
                             RaiseSuccess();
                         }
                         else
                         {
+                            // clear all PIN symbols
                             EnteredPin.Clear();
                             UpdateDisplayedText(resetUI: false);
+                            // Raise Error event
                             RaiseError();
                         }
                     }

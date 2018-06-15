@@ -42,11 +42,12 @@
 1. `PinView` is MVVM-ready, so you can bind the following properties:
 
 - `Validator` (`Func<IList<char>, bool>`) - you should check entered PIN there; required
-- `PinLength` (`int`) - The PIN length; default is 4
+- `PinLength` (`int`) - the PIN length; default is 4
 - `EmptyCircleImage` (`ImageSource`) - not entered symbol representation; default is black empty circle
 - `FilledCircleImage` (`ImageSource`) - entered symbol representation; default is black filled circle
 - `SuccessCommand` (`ICommand`) - invokes when the correct PIN is entered
 - `ErrorCommand` (`ICommand`) - invokes when an incorrect PIN is entered
+- `ClearAfterSuccess` (`bool`) - indicates whether the entered PIN should be cleaned or not after it was confirmed as correct; default is `true` 
 
 ## TODO
 
@@ -63,7 +64,7 @@
 - Removed `Title` property: now you have to implement it manually in your UI
 - Refactored the ViewModel API (splitted into bindable properties)
 - Namespaces changed from `PCL` to `Core`.
-- Allowed to change the PIN length dynamically
+- Allowed to change the PIN length dynamically as well as PIN symbols
 
 ### 1.1.1 (coming soon)
 
