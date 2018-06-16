@@ -108,10 +108,10 @@
       <HintPath>..\..\packages\Xamarin.Forms.2.5.0.280555\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="FormsPinView.Droid">
-      <HintPath>..\..\packages\FormsPinView.1.1.1-pre1\lib\MonoAndroid10\FormsPinView.Droid.dll</HintPath>
+      <HintPath>..\..\packages\FormsPinView.1.1.1\lib\MonoAndroid10\FormsPinView.Droid.dll</HintPath>
     </Reference>
     <Reference Include="FormsPinView.PCL">
-      <HintPath>..\..\packages\FormsPinView.1.1.1-pre1\lib\MonoAndroid10\FormsPinView.PCL.dll</HintPath>
+      <HintPath>..\..\packages\FormsPinView.1.1.1\lib\MonoAndroid10\FormsPinView.PCL.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
