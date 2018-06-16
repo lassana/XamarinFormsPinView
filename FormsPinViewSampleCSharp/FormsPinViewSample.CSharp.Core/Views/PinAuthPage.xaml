@@ -18,9 +18,10 @@
                 HorizontalTextAlignment="Center"
                 TextColor="Black" />
             <pin:PinView
-                HorizontalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
                 PinLength="{Binding PinLength}"
                 Validator="{Binding ValidatorFunc}"
+                ClearAfterSuccess="false"
                 Success="Handle_Success"
                 ErrorCommand="{Binding ErrorCommand}"
                 SuccessCommand="{Binding SuccessCommand}" />

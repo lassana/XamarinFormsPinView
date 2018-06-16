@@ -139,7 +139,7 @@ namespace FormsPinView.Core
                                     defaultValue: null);
 
         /// <summary>
-        /// Gets or sets a command which invokes when the correct PIN is entered.
+        /// Gets or sets a command which is invoked when the correct PIN is entered.
         /// </summary>
         public ICommand SuccessCommand
         {
@@ -154,12 +154,28 @@ namespace FormsPinView.Core
                                     defaultValue: null);
 
         /// <summary>
-        /// Gets or sets a command which invokes when an incorrect PIN is entered.
+        /// Gets or sets a command which is invoked when an incorrect PIN is entered.
         /// </summary>
         public ICommand ErrorCommand
         {
             get { return (ICommand)GetValue(ErrorCommandProperty); }
             set { SetValue(ErrorCommandProperty, value); }
+        }
+
+        public static readonly BindableProperty ClearAfterSuccessProperty =
+            BindableProperty.Create(propertyName: nameof(ClearAfterSuccess),
+                                    returnType: typeof(bool),
+                                    declaringType: typeof(PinView),
+                                    defaultValue: true);
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the entered PIN should be cleaned or not
+        /// after it was confirmed as correct. Default is <code>true</code>.
+        /// </summary>
+        public bool ClearAfterSuccess
+        {
+            get { return (bool)GetValue(ClearAfterSuccessProperty); }
+            set { SetValue(ClearAfterSuccessProperty, value); }
         }
 
         #endregion
@@ -181,12 +197,6 @@ namespace FormsPinView.Core
                 RaisePropertyChanged(nameof(EnteredPin));
             }
         }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the entered PIN should be cleaned or not
-        /// after it was confirmed as correct. Default is <code>true</code>.
-        /// </summary>
-        public bool ClearAfterSuccess { get; set; } = true;
 
         /// <summary>
         /// Gets the "key pressed" command.
@@ -369,4 +379,3 @@ namespace FormsPinView.Core
         }
     }
 }
-
