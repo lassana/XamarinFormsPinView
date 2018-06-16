@@ -59,20 +59,20 @@
 
 ## Changelog
 
-### 2.0.0-pre1 (coming soon)
+### 2.0.0-pre1
 
 - Removed `Title` property: now you have to implement it manually in your UI
 - Refactored the ViewModel API (splitted into bindable properties)
 - Namespaces changed from `PCL` to `Core`.
 - Allowed to change the PIN length dynamically as well as PIN symbols
 
-### 1.1.1 (coming soon)
+### 1.1.1
 
-- *1.1.1-pre1* released as a stable version
+- Released *1.1.1-pre1* as a stable version
 
 ### 1.1.1-pre1
 
-- Fix `NSInternalInconsistencyException` crash on iOS
+- Fixed `NSInternalInconsistencyException` crash on iOS
 
 ### 1.1.0
 
@@ -81,8 +81,8 @@
 
 ### 1.0.1
 
-- PCL profile changed to 259
-- F# sample added
+- Changed PCL profile to 259
+- Added F# sample
 
 ### 1.0.0
 
