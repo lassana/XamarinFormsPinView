@@ -1,4 +1,4 @@
-# PIN keyboard for Xamarin.Forms.
+# PIN keyboard for Xamarin.Forms
 
 <pre><code><img src="ios.mov.gif" height="auto" width="220px"> <img src="android.mov.gif" height="auto" width="220px"></code></pre>
 
@@ -41,25 +41,25 @@
         
 1. `PinView` is MVVM-ready, so you can bind the following properties:
 
-- `Validator` (`Func<IList<char>, bool>`) - you should check entered PIN there; required
+- `Validator` (`Func<IList<char>, bool>`) - required; you should check entered PIN there
 - `PinLength` (`int`) - the PIN length; default is 4
-- `EmptyCircleImage` (`ImageSource`) - not entered symbol representation; default is black empty circle
-- `FilledCircleImage` (`ImageSource`) - entered symbol representation; default is black filled circle
-- `SuccessCommand` (`ICommand`) - invokes when the correct PIN is entered
-- `ErrorCommand` (`ICommand`) - invokes when an incorrect PIN is entered
+- `EmptyCircleImage` (`ImageSource`) - _not entered_ symbol representation; default is a black empty circle
+- `FilledCircleImage` (`ImageSource`) - _entered_ symbol representation; default is a black filled circle
+- `SuccessCommand` (`ICommand`) - invoked when the correct PIN is entered
+- `ErrorCommand` (`ICommand`) - invoked when an incorrect PIN is entered
 - `ClearAfterSuccess` (`bool`) - indicates whether the entered PIN should be cleaned or not after it was confirmed as correct; default is `true` 
 
 ## TODO
 
-[ ] Use `AbsoluteLayout` instead of `Grid`
-[ ] Colorizing
-[ ] Randomizing the numbers order
-[ ] CI builds
-[ ] UI tests
+- [ ] Use `AbsoluteLayout` instead of `Grid`, no XAML
+- [ ] Colorizing
+- [ ] Randomizing the numbers order
+- [ ] CI builds
+- [ ] UI tests
 
 ## Changelog
 
-### 2.0-pre1 (coming soon)
+### 2.0.0-pre1 (coming soon)
 
 - Removed `Title` property: now you have to implement it manually in your UI
 - Refactored the ViewModel API (splitted into bindable properties)
@@ -68,7 +68,7 @@
 
 ### 1.1.1 (coming soon)
 
-- 1.1.1-pre1 released as a stable version
+- *1.1.1-pre1* released as a stable version
 
 ### 1.1.1-pre1
 
