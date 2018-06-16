@@ -107,6 +107,12 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\..\packages\Xamarin.Forms.2.5.0.280555\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
+    <Reference Include="FormsPinView.Core">
+      <HintPath>..\..\packages\FormsPinView.2.0.0-pre1\lib\MonoAndroid10\FormsPinView.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FormsPinView.Droid">
+      <HintPath>..\..\packages\FormsPinView.2.0.0-pre1\lib\MonoAndroid10\FormsPinView.Droid.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -138,14 +144,6 @@
     <ProjectReference Include="..\FormsPinViewSample.CSharp.Core\FormsPinViewSample.CSharp.Core.csproj">
       <Project>{96C62076-BFE0-461D-A216-76222066175B}</Project>
       <Name>FormsPinViewSample.CSharp.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\FormsPinView\FormsPinView.Droid\FormsPinView.Droid.csproj">
-      <Project>{78E4A284-455D-448D-8517-7A61A14EF14A}</Project>
-      <Name>FormsPinView.Droid</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\FormsPinView\FormsPinView.Core\FormsPinView.Core.csproj">
-      <Project>{47234E81-6556-4545-B23E-56FD0355604F}</Project>
-      <Name>FormsPinView.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
