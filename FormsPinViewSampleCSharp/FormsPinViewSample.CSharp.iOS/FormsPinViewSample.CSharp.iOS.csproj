@@ -98,10 +98,10 @@
       <HintPath>..\..\packages\Xamarin.Forms.2.5.0.280555\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="FormsPinView.Core">
-      <HintPath>..\..\packages\FormsPinView.2.0.0-pre1\lib\Xamarin.iOS10\FormsPinView.Core.dll</HintPath>
+      <HintPath>..\..\packages\FormsPinView.2.0.0\lib\Xamarin.iOS10\FormsPinView.Core.dll</HintPath>
     </Reference>
     <Reference Include="FormsPinView.iOS">
-      <HintPath>..\..\packages\FormsPinView.2.0.0-pre1\lib\Xamarin.iOS10\FormsPinView.iOS.dll</HintPath>
+      <HintPath>..\..\packages\FormsPinView.2.0.0\lib\Xamarin.iOS10\FormsPinView.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
