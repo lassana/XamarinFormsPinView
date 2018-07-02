@@ -1,7 +1,7 @@
 ﻿using System.Windows.Input;
 using Xamarin.Forms;
 
-namespace FormsPinView.PCL
+namespace FormsPinView.Core
 {
     /// <summary>
     /// The PIN item view (a button).
@@ -42,5 +42,3 @@ namespace FormsPinView.PCL
         }
     }
 }
-
-

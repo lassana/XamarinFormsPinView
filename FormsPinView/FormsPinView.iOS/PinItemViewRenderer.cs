@@ -1,6 +1,6 @@
 ﻿using CoreGraphics;
+using FormsPinView.Core;
 using FormsPinView.iOS;
-using FormsPinView.PCL;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -14,7 +14,7 @@ namespace FormsPinView.iOS
 
         public static new void Init()
         {
-            //var t = typeof(PinItemViewRenderer);
+            _ = typeof(PinItemViewRenderer);
         }
 
         protected override void OnElementChanged(ElementChangedEventArgs<PinItemView> e)

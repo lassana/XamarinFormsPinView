@@ -1,7 +1,5 @@
-﻿using System;
-using FormsPinViewSample.Core.ViewModels;
+﻿using FormsPinViewSample.Core.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace FormsPinViewSample.Core.Views
 {
@@ -12,13 +10,14 @@ namespace FormsPinViewSample.Core.Views
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             var viewModel = new PinAuthViewModel();
-            viewModel.PinViewModel.Success += (object sender, EventArgs e) => 
-            {
-                this.Navigation.PopAsync();
-            };
             base.BindingContext = viewModel;
         }
 
         protected override bool OnBackButtonPressed() => false;
+
+        private void Handle_Success(object sender, System.EventArgs e)
+        {
+            this.Navigation.PopAsync();
+        }
     }
 }

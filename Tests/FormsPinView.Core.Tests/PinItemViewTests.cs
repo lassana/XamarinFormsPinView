@@ -2,7 +2,7 @@ using System;
 using Xamarin.Forms;
 using Xunit;
 
-namespace FormsPinView.PCL.Tests
+namespace FormsPinView.Core.Tests
 {
     /// <summary>
     /// PinItemView tests.

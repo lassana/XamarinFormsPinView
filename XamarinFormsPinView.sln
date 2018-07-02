@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FormsPinView", "FormsPinView", "{17DB4187-0C67-4A2F-9C18-A46404913569}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsPinView.PCL", "FormsPinView\FormsPinView.PCL\FormsPinView.PCL.csproj", "{47234E81-6556-4545-B23E-56FD0355604F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsPinView.Core", "FormsPinView\FormsPinView.Core\FormsPinView.Core.csproj", "{47234E81-6556-4545-B23E-56FD0355604F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsPinView.iOS", "FormsPinView\FormsPinView.iOS\FormsPinView.iOS.csproj", "{F0218B13-AC99-4354-A1AA-0DBA60DD879C}"
 EndProject
@@ -25,7 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsPinViewSample.CSharp.D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{084C6A4F-C6DF-4404-B3AB-F5C36A4CD053}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsPinView.PCL.Tests", "Tests\FormsPinView.PCL.Tests\FormsPinView.PCL.Tests.csproj", "{0F1C6637-D262-4EC6-BB67-91C353C5D911}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsPinView.Core.Tests", "Tests\FormsPinView.Core.Tests\FormsPinView.Core.Tests.csproj", "{0F1C6637-D262-4EC6-BB67-91C353C5D911}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormsPinViewSample.CSharp.iOS", "FormsPinViewSampleCSharp\FormsPinViewSample.CSharp.iOS\FormsPinViewSample.CSharp.iOS.csproj", "{C1BD450A-5D71-476B-B2A2-8B6F59D01759}"
 EndProject
