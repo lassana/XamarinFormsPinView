@@ -59,6 +59,10 @@
 
 ## Changelog
 
+### 2.0.0
+
+- Released *2.0.0-pre1* as a stable version
+
 ### 2.0.0-pre1
 
 - Removed `Title` property: now you have to implement it manually in your UI
