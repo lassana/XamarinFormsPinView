@@ -8,16 +8,24 @@ namespace FormsPinView.Core
     /// <summary>
     /// The PIN view.
     /// </summary>
-    public partial class PinView : Grid
+    public class PinView : AbsoluteLayout
     {
-        #region Private fields and properties
+        #region Fields and properties
 
         private const int DefaultPinLength = 4;
 
         private const string DefaultEmptyCircleImage = "img_circle.png";
         private const string DefaultFilledCircleImage = "img_circle_filled.png";
 
-        private StackLayout circlesStackLayout;
+        private StackLayout _circlesStackLayout;
+
+        public double CellHeight { get; } = 44d;
+
+        public double CellWidth { get; } = 44d;
+
+        public double RowSpacing { get; } = 18d;
+
+        public double ColumnSpacing { get; } = 46d;
 
         #endregion
 
@@ -265,36 +273,6 @@ namespace FormsPinView.Core
         /// </summary>
         public PinView()
         {
-            Resources = new ResourceDictionary
-            {
-                { "cellHeight", 44d },
-                { "cellWidth", 84d }
-            };
-
-            RowSpacing = 18;
-
-            RowDefinitions = new RowDefinitionCollection
-            {
-                new RowDefinition { Height = (double)Resources["cellHeight"] }, // Dots
-                new RowDefinition { Height = (double)Resources["cellHeight"] }, // 1 2 3
-                new RowDefinition { Height = (double)Resources["cellHeight"] }, // 4 5 6
-                new RowDefinition { Height = (double)Resources["cellHeight"] }, // 7 8 9
-                new RowDefinition { Height = (double)Resources["cellHeight"] }, //   0 ←
-            };
-            ColumnDefinitions = new ColumnDefinitionCollection
-            {
-                new ColumnDefinition { Width = (double)Resources["cellWidth"] },
-                new ColumnDefinition { Width = (double)Resources["cellWidth"] },
-                new ColumnDefinition { Width = (double)Resources["cellWidth"] }
-            };
-
-            circlesStackLayout = new StackLayout
-            {
-                Orientation = StackOrientation.Horizontal,
-                HorizontalOptions = LayoutOptions.CenterAndExpand
-            };
-            Children.Add(circlesStackLayout, 0, 3, 0, 1);
-
             var items = new []
             {
                 new []
@@ -322,6 +300,19 @@ namespace FormsPinView.Core
                     new PinItemView { Text = Device.RuntimePlatform == Device.iOS ? "⌫" : "✕", CommandParameter = "Backspace" }
                 }
             };
+
+            HeightRequest = CellHeight * (items.Length + 1) + RowSpacing * items.Length;
+            WidthRequest = CellWidth * items[0].Length + ColumnSpacing * (items[0].Length - 1);
+
+            Children.Add(
+                view: _circlesStackLayout = new StackLayout
+                {
+                    Orientation = StackOrientation.Horizontal,
+                    HorizontalOptions = LayoutOptions.Center
+                },
+                bounds: new Rectangle(0, 0, 1, CellHeight),
+                flags: AbsoluteLayoutFlags.WidthProportional);
+            
             for (int i = 0; i < items.Length; i++)
             {
                 for (int j = 0; j < items[i].Length; j++)
@@ -331,7 +322,13 @@ namespace FormsPinView.Core
                         continue;
                     }
                     items[i][j].Command = KeyPressedCommand;
-                    Children.Add(items[i][j], j, i + 1);
+                    Children.Add(
+                        items[i][j],
+                        new Rectangle(x: (CellWidth + ColumnSpacing) * j,
+                                      y: (CellHeight + RowSpacing) * (i + 1),
+                                      width: CellWidth,
+                                      height: CellHeight),
+                        AbsoluteLayoutFlags.None);
                 }
             }
 
@@ -350,12 +347,12 @@ namespace FormsPinView.Core
                                                     $" is not a positive value but {PinLength}");
             }
 
-            if (resetUI || circlesStackLayout.Children.Count == 0)
+            if (resetUI || _circlesStackLayout.Children.Count == 0)
             {
-                circlesStackLayout.Children.Clear();
+                _circlesStackLayout.Children.Clear();
                 for (int i = 0; i < PinLength; ++i)
                 {
-                    circlesStackLayout.Children.Add(new Image
+                    _circlesStackLayout.Children.Add(new Image
                     {
                         Source = EmptyCircleImage,
                         HeightRequest = 28,
@@ -370,11 +367,11 @@ namespace FormsPinView.Core
             {
                 for (int i = 0; i < EnteredPin.Count; ++i)
                 {
-                    (circlesStackLayout.Children[i] as Image).Source = FilledCircleImage;
+                    (_circlesStackLayout.Children[i] as Image).Source = FilledCircleImage;
                 }
                 for (int i = EnteredPin.Count; i < PinLength; ++i)
                 {
-                    (circlesStackLayout.Children[i] as Image).Source = EmptyCircleImage;
+                    (_circlesStackLayout.Children[i] as Image).Source = EmptyCircleImage;
                 }
             }
 

@@ -66,7 +66,7 @@ namespace FormsPinView.Core.Tests
                 btn.Command.Execute(btn.CommandParameter);
             }
 
-            var sl = (StackLayout)((Grid)view).Children.First(c => c is StackLayout);
+            var sl = (StackLayout)(view).Children.First(c => c is StackLayout);
             foreach (View child in sl.Children)
             {
                 var fis = ((Image)child).Source as FileImageSource;
@@ -112,7 +112,7 @@ namespace FormsPinView.Core.Tests
             };
             PinItemView findButton(string arg)
             {
-                return ((PinItemView)((Grid)view).Children.First(c => c is PinItemView btn && btn.Text == arg));
+                return ((PinItemView)(view).Children.First(c => c is PinItemView btn && btn.Text == arg));
             }
             Assert.Raises<EventArgs>(
                 (EventHandler<EventArgs> obj) => view.Error += obj,

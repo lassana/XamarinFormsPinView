@@ -38,3 +38,9 @@ Thumbs.db
 
 #dotCover
 *.dotCover
+
+# NuGet local packages
+LocalPackages/*nupkg
+
+# VS for Mac files
+.vs/XamarinFormsPinView/*

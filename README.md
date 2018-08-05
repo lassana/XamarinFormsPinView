@@ -51,7 +51,7 @@
 
 ## TODO
 
-- [ ] Use `AbsoluteLayout` instead of `Grid`, no XAML
+- [x] Use `AbsoluteLayout` instead of `Grid`, no XAML
 - [ ] Colorizing
 - [ ] Randomizing the numbers order
 - [ ] CI builds
