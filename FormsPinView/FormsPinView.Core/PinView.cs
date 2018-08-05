@@ -13,8 +13,11 @@ namespace FormsPinView.Core
         #region Private fields and properties
 
         private const int DefaultPinLength = 4;
+
         private const string DefaultEmptyCircleImage = "img_circle.png";
         private const string DefaultFilledCircleImage = "img_circle_filled.png";
+
+        private StackLayout circlesStackLayout;
 
         #endregion
 
@@ -199,20 +202,16 @@ namespace FormsPinView.Core
         }
 
         /// <summary>
+        /// The "key pressed" command.
+        /// </summary>
+        /// <value>The "key pressed" command.</value>
+        private Command<string> _keyPressedCommand;
+        /// <summary>
         /// Gets the "key pressed" command.
         /// </summary>
-        public Command<string> KeyPressedCommand { get; }
-
-        #endregion
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:FormsPinView.Core.PinView"/> class.
-        /// </summary>
-        public PinView()
-        {
-            InitializeComponent();
-
-            KeyPressedCommand = new Command<string>(arg =>
+        public Command<string> KeyPressedCommand
+            => _keyPressedCommand = _keyPressedCommand
+            ?? new Command<string>(arg =>
             {
                 if (Validator == null)
                 {
@@ -259,11 +258,80 @@ namespace FormsPinView.Core
                 }
             });
 
-            foreach (var view in Children)
+        #endregion
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:FormsPinView.Core.PinView"/> class.
+        /// </summary>
+        public PinView()
+        {
+            Resources = new ResourceDictionary
             {
-                if (view is PinItemView pinItem)
+                { "cellHeight", 44d },
+                { "cellWidth", 84d }
+            };
+
+            RowSpacing = 18;
+
+            RowDefinitions = new RowDefinitionCollection
+            {
+                new RowDefinition { Height = (double)Resources["cellHeight"] }, // Dots
+                new RowDefinition { Height = (double)Resources["cellHeight"] }, // 1 2 3
+                new RowDefinition { Height = (double)Resources["cellHeight"] }, // 4 5 6
+                new RowDefinition { Height = (double)Resources["cellHeight"] }, // 7 8 9
+                new RowDefinition { Height = (double)Resources["cellHeight"] }, //   0 ←
+            };
+            ColumnDefinitions = new ColumnDefinitionCollection
+            {
+                new ColumnDefinition { Width = (double)Resources["cellWidth"] },
+                new ColumnDefinition { Width = (double)Resources["cellWidth"] },
+                new ColumnDefinition { Width = (double)Resources["cellWidth"] }
+            };
+
+            circlesStackLayout = new StackLayout
+            {
+                Orientation = StackOrientation.Horizontal,
+                HorizontalOptions = LayoutOptions.CenterAndExpand
+            };
+            Children.Add(circlesStackLayout, 0, 3, 0, 1);
+
+            var items = new []
+            {
+                new []
                 {
-                    pinItem.Command = KeyPressedCommand;
+                    new PinItemView { Text = "1", CommandParameter = "1" },
+                    new PinItemView { Text = "2", CommandParameter = "2" },
+                    new PinItemView { Text = "3", CommandParameter = "3" }
+                },
+                new []
+                {
+                    new PinItemView { Text = "4", CommandParameter = "4" },
+                    new PinItemView { Text = "5", CommandParameter = "5" },
+                    new PinItemView { Text = "6", CommandParameter = "6" }
+                },
+                new []
+                {
+                    new PinItemView { Text = "7", CommandParameter = "7" },
+                    new PinItemView { Text = "8", CommandParameter = "8" },
+                    new PinItemView { Text = "9", CommandParameter = "9" },
+                },
+                new []
+                {
+                    null,
+                    new PinItemView { Text = "0", CommandParameter = "0" },
+                    new PinItemView { Text = Device.RuntimePlatform == Device.iOS ? "⌫" : "✕", CommandParameter = "Backspace" }
+                }
+            };
+            for (int i = 0; i < items.Length; i++)
+            {
+                for (int j = 0; j < items[i].Length; j++)
+                {
+                    if (items[i][j] == null)
+                    {
+                        continue;
+                    }
+                    items[i][j].Command = KeyPressedCommand;
+                    Children.Add(items[i][j], j, i + 1);
                 }
             }
 

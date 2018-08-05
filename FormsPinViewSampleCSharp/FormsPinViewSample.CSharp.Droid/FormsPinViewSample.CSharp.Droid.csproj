@@ -107,12 +107,6 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\..\packages\Xamarin.Forms.2.5.0.280555\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="FormsPinView.Core">
-      <HintPath>..\..\packages\FormsPinView.2.0.0\lib\MonoAndroid10\FormsPinView.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FormsPinView.Droid">
-      <HintPath>..\..\packages\FormsPinView.2.0.0\lib\MonoAndroid10\FormsPinView.Droid.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />

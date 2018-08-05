@@ -97,12 +97,6 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\..\packages\Xamarin.Forms.2.5.0.280555\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="FormsPinView.Core">
-      <HintPath>..\..\packages\FormsPinView.2.0.0\lib\Xamarin.iOS10\FormsPinView.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FormsPinView.iOS">
-      <HintPath>..\..\packages\FormsPinView.2.0.0\lib\Xamarin.iOS10\FormsPinView.iOS.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -127,6 +121,14 @@
     <ProjectReference Include="..\FormsPinViewSample.CSharp.Core\FormsPinViewSample.CSharp.Core.csproj">
       <Project>{96C62076-BFE0-461D-A216-76222066175B}</Project>
       <Name>FormsPinViewSample.CSharp.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FormsPinView\FormsPinView.Core\FormsPinView.Core.csproj">
+      <Project>{47234E81-6556-4545-B23E-56FD0355604F}</Project>
+      <Name>FormsPinView.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FormsPinView\FormsPinView.iOS\FormsPinView.iOS.csproj">
+      <Project>{F0218B13-AC99-4354-A1AA-0DBA60DD879C}</Project>
+      <Name>FormsPinView.iOS</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
