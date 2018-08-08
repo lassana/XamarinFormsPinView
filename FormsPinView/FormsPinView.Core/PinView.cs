@@ -14,9 +14,6 @@ namespace FormsPinView.Core
 
         private const int DefaultPinLength = 4;
 
-        private const string DefaultEmptyCircleImage = "img_circle.png";
-        private const string DefaultFilledCircleImage = "img_circle_filled.png";
-
         private StackLayout _circlesStackLayout;
 
         public double CellHeight { get; } = 44d;
@@ -83,51 +80,6 @@ namespace FormsPinView.Core
             ((PinView)bindable).UpdateDisplayedText(resetUI: true);
         }
 
-        public static readonly BindableProperty EmptyCircleImageProperty =
-            BindableProperty.Create(propertyName: nameof(EmptyCircleImage),
-                                    returnType: typeof(ImageSource),
-                                    declaringType: typeof(PinView),
-                                    defaultValue: new FileImageSource { File = DefaultEmptyCircleImage },
-                                    propertyChanged: HandleCircleImageChanged);
-
-        /// <summary>
-        /// Gets or sets the ImageSource of the <i>empty</i> item icon.
-        /// </summary>
-        public ImageSource EmptyCircleImage
-        {
-            get { return (ImageSource)GetValue(EmptyCircleImageProperty); }
-            set
-            {
-                SetValue(EmptyCircleImageProperty, value);
-
-            }
-        }
-
-        public static readonly BindableProperty FilledCircleImageProperty =
-            BindableProperty.Create(propertyName: nameof(FilledCircleImage),
-                                    returnType: typeof(ImageSource),
-                                    declaringType: typeof(PinView),
-                                    defaultValue: new FileImageSource { File = DefaultFilledCircleImage },
-                                    propertyChanged: HandleCircleImageChanged);
-
-        /// <summary>
-        /// Gets or sets the ImageSource of the <i>filled</i> item icon.
-        /// </summary>
-        public ImageSource FilledCircleImage
-        {
-            get { return (ImageSource)GetValue(FilledCircleImageProperty); }
-            set
-            {
-                SetValue(FilledCircleImageProperty, value);
-                UpdateDisplayedText(resetUI: true);
-            }
-        }
-
-        private static void HandleCircleImageChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            ((PinView)bindable).UpdateDisplayedText(resetUI: true);
-        }
-
         public static readonly BindableProperty ValidatorProperty =
             BindableProperty.Create(propertyName: nameof(Validator),
                                     returnType: typeof(Func<IList<char>, bool>),
@@ -187,6 +139,92 @@ namespace FormsPinView.Core
         {
             get { return (bool)GetValue(ClearAfterSuccessProperty); }
             set { SetValue(ClearAfterSuccessProperty, value); }
+        }
+
+        public static readonly BindableProperty BorderColorProperty =
+            BindableProperty.Create(propertyName: nameof(BorderColor),
+                                    returnType: typeof(Color),
+                                    declaringType: typeof(PinView),
+                                    defaultValue: Color.Gray,
+                                    propertyChanged: Handle_BorderColorChanged);
+
+        /// <summary>
+        /// Gets or sets a view tint color.
+        /// </summary>
+        public Color BorderColor
+        {
+            get { return (Color)GetValue(BorderColorProperty); }
+            set { SetValue(BorderColorProperty, value); }
+        }
+
+        private static void Handle_BorderColorChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            foreach (View child in ((PinView)bindable).Children)
+            {
+                if (child is PinItemView pinItem)
+                {
+                    pinItem.BorderColor = (Color)newValue;
+                }
+            }
+        }
+
+        public static readonly BindableProperty ColorProperty =
+            BindableProperty.Create(propertyName: nameof(Color),
+                                    returnType: typeof(Color),
+                                    declaringType: typeof(PinView),
+                                    defaultValue: Color.Black,
+                                    propertyChanged: Handle_ColorChanged);
+
+        /// <summary>
+        /// Gets or sets a view basic color.
+        /// </summary>
+        public Color Color
+        {
+            get { return (Color)GetValue(ColorProperty); }
+            set { SetValue(ColorProperty, value); }
+        }
+
+        private static void Handle_ColorChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var statusLayout = (StackLayout)((PinView)bindable).Children[0];
+            foreach (View child in statusLayout.Children)
+            {
+                ((CircleView)child).Color = (Color)newValue;
+            }
+            foreach (View child in ((PinView)bindable).Children)
+            {
+                if (child is PinItemView pinItem)
+                {
+                    pinItem.Color = (Color)newValue;
+                }
+            }
+        }
+
+        public static readonly BindableProperty RippleColorProperty =
+            BindableProperty.Create(propertyName: nameof(RippleColor),
+                                    returnType: typeof(Color),
+                                    declaringType: typeof(PinView),
+                                    defaultValue: Color.Gray,
+                                    propertyChanged: Handle_RippleColorChanged);
+
+        /// <summary>
+        /// Gets or sets a view basic color.
+        /// </summary>
+        public Color RippleColor
+        {
+            get { return (Color)GetValue(RippleColorProperty); }
+            set { SetValue(RippleColorProperty, value); }
+        }
+
+        private static void Handle_RippleColorChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            foreach (View child in ((PinView)bindable).Children)
+            {
+                if (child is PinItemView pinItem)
+                {
+                    pinItem.RippleColor = (Color)newValue;
+                }
+            }
         }
 
         #endregion
@@ -352,9 +390,8 @@ namespace FormsPinView.Core
                 _circlesStackLayout.Children.Clear();
                 for (int i = 0; i < PinLength; ++i)
                 {
-                    _circlesStackLayout.Children.Add(new Image
+                    _circlesStackLayout.Children.Add(new CircleView
                     {
-                        Source = EmptyCircleImage,
                         HeightRequest = 28,
                         WidthRequest = 28,
                         MinimumWidthRequest = 28,
@@ -367,11 +404,11 @@ namespace FormsPinView.Core
             {
                 for (int i = 0; i < EnteredPin.Count; ++i)
                 {
-                    (_circlesStackLayout.Children[i] as Image).Source = FilledCircleImage;
+                    (_circlesStackLayout.Children[i] as CircleView).IsFilledUp = true;
                 }
                 for (int i = EnteredPin.Count; i < PinLength; ++i)
                 {
-                    (_circlesStackLayout.Children[i] as Image).Source = EmptyCircleImage;
+                    (_circlesStackLayout.Children[i] as CircleView).IsFilledUp = false;
                 }
             }
 

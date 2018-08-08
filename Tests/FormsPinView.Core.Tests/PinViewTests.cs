@@ -7,7 +7,7 @@ using Xunit;
 namespace FormsPinView.Core.Tests
 {
     /// <summary>
-    /// PinView tests.
+    /// <see cref="PinView"/> tests.
     /// </summary>
     public class PinViewTests
     {
@@ -69,9 +69,9 @@ namespace FormsPinView.Core.Tests
             var sl = (StackLayout)(view).Children.First(c => c is StackLayout);
             foreach (View child in sl.Children)
             {
-                var fis = ((Image)child).Source as FileImageSource;
-                Assert.NotNull(fis);
-                Assert.Equal(view.FilledCircleImage, fis);
+                var cv = (CircleView)child;
+                Assert.NotNull(cv);
+                Assert.True(cv.IsFilledUp);
             }
         }
 
@@ -302,6 +302,64 @@ namespace FormsPinView.Core.Tests
                 Assert.Empty(pinView.EnteredPin);
             else
                 Assert.NotEmpty(pinView.EnteredPin);
+        }
+
+        /// <summary>
+        /// Tests if color of all children is being changed when setting the view color.
+        /// </summary>
+        [Fact]
+        public void TestColorChange()
+        {
+            var pinView = new PinView();
+            var expectedValue = Color.GreenYellow;
+            pinView.Color = expectedValue;
+
+            Assert.Equal(expectedValue, pinView.Color);
+
+            var statusLayout = (StackLayout)pinView.Children[0];
+            foreach (View child in statusLayout.Children)
+            {
+                Assert.Equal(expectedValue, ((CircleView)child).Color);
+            }
+            foreach(View view in pinView.Children)
+            {
+                if (view is CircleView circleView) 
+                if (view is PinItemView pinItemView) Assert.Equal(expectedValue, pinItemView.Color);
+            }
+        }
+
+        /// <summary>
+        /// Tests if tint color of all children is being changed when setting the view tint color.
+        /// </summary>
+        [Fact]
+        public void TestBorderColorChange()
+        {
+            var pinView = new PinView();
+            var expectedValue = Color.Violet;
+            pinView.BorderColor = expectedValue;
+
+            Assert.Equal(expectedValue, pinView.BorderColor);
+            foreach (View view in pinView.Children)
+            {
+                if (view is PinItemView pinItemView) Assert.Equal(expectedValue, pinItemView.BorderColor);
+            }
+        }
+
+        /// <summary>
+        /// Tests if ripple color of all children is being changed when setting the view tint color.
+        /// </summary>
+        [Fact]
+        public void TestRippleColorChange()
+        {
+            var pinView = new PinView();
+            var expectedValue = Color.Red;
+            pinView.RippleColor = expectedValue;
+
+            Assert.Equal(expectedValue, pinView.RippleColor);
+            foreach (View view in pinView.Children)
+            {
+                if (view is PinItemView pinItemView) Assert.Equal(expectedValue, pinItemView.RippleColor);
+            }
         }
     }
 }

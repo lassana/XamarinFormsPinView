@@ -6,7 +6,7 @@ namespace FormsPinView.Core
     /// <summary>
     /// The PIN item view (a button).
     /// </summary>
-    public class PinItemView : ContentView
+    public class PinItemView : View
     {
         public static readonly BindableProperty TextProperty = BindableProperty.Create("Text", typeof(string), typeof(Button), null);
 
@@ -39,6 +39,51 @@ namespace FormsPinView.Core
         {
             get { return GetValue(CommandParameterProperty); }
             set { SetValue(CommandParameterProperty, value); }
+        }
+
+        public static readonly BindableProperty BorderColorProperty =
+            BindableProperty.Create(propertyName: nameof(BorderColor),
+                                    returnType: typeof(Color),
+                                    declaringType: typeof(PinItemView),
+                                    defaultValue: Color.Gray);
+        
+        /// <summary>
+        /// Gets or sets a view border color.
+        /// </summary>
+        public Color BorderColor
+        {
+            get { return (Color)GetValue(BorderColorProperty); }
+            set { SetValue(BorderColorProperty, value); }
+        }
+
+        public static readonly BindableProperty ColorProperty =
+            BindableProperty.Create(propertyName: nameof(Color),
+                                    returnType: typeof(Color),
+                                    declaringType: typeof(PinItemView),
+                                    defaultValue: Color.Black);
+
+        /// <summary>
+        /// Gets or sets a view basic color.
+        /// </summary>
+        public Color Color
+        {
+            get { return (Color)GetValue(ColorProperty); }
+            set { SetValue(ColorProperty, value); }
+        }
+
+        public static readonly BindableProperty RippleColorProperty =
+            BindableProperty.Create(propertyName: nameof(RippleColor),
+                                    returnType: typeof(Color),
+                                    declaringType: typeof(PinItemView),
+                                    defaultValue: Color.Gray);
+
+        /// <summary>
+        /// Gets or sets a view ripple color.
+        /// </summary>
+        public Color RippleColor
+        {
+            get { return (Color)GetValue(RippleColorProperty); }
+            set { SetValue(RippleColorProperty, value); }
         }
     }
 }
