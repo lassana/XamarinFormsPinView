@@ -395,7 +395,8 @@ namespace FormsPinView.Core
                         HeightRequest = 28,
                         WidthRequest = 28,
                         MinimumWidthRequest = 28,
-                        MinimumHeightRequest = 28
+                        MinimumHeightRequest = 28,
+                        Color = Color
                     });
                 }
             }
