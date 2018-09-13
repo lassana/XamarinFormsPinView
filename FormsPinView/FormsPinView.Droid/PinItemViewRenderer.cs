@@ -1,5 +1,4 @@
-﻿using System;
-using Android.Graphics.Drawables;
+﻿using Android.Graphics.Drawables;
 using Android.Support.V4.Content.Res;
 using Android.Widget;
 using FormsPinView.Core;
@@ -47,7 +46,7 @@ namespace FormsPinView.Droid
             {
                 if (Control == null)
                 {
-                    var sideSize = (int)ConvertDpToPixel(44);
+                    var sideSize = (int)Context.ToPixels(44d);
 
                     _button = new RippleButton(Context, GetRippleColor());
                     _button.SetWidth(sideSize);
@@ -115,12 +114,6 @@ namespace FormsPinView.Droid
         private AColor GetColor()
         {
             return Element?.Color.ToAndroid() ?? AColor.Gray;
-        }
-
-        private float ConvertDpToPixel(float dp)
-        {
-            float density = Context.Resources.DisplayMetrics.Density;
-            return (int)Math.Round((float)dp * density);
         }
     }
 }
