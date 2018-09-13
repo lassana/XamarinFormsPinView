@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Android.Graphics.Drawables;
+using Android.Support.V4.Content.Res;
 using Android.Widget;
 using FormsPinView.Core;
 using FormsPinView.Droid;
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android.AppCompat;
+using Xamarin.Forms.Platform.Android;
+using AColor = Android.Graphics.Color;
 using AView = Android.Views.View;
 
 [assembly: ExportRenderer(typeof(PinItemView), typeof(PinItemViewRenderer))]
@@ -22,7 +24,16 @@ namespace FormsPinView.Droid
         {
         }
 
-        protected override void OnElementChanged(Xamarin.Forms.Platform.Android.ElementChangedEventArgs<PinItemView> e)
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _button = null;
+            }
+            base.Dispose(disposing);
+        }
+
+        protected override void OnElementChanged(ElementChangedEventArgs<PinItemView> e)
         {
             base.OnElementChanged(e);
 
@@ -35,13 +46,13 @@ namespace FormsPinView.Droid
             {
                 if (Control == null)
                 {
-                    var sideSize = (int)ConvertDpToPixel(44);
+                    var sideSize = (int)Context.ToPixels(44d);
 
-                    _button = new RippleButton(Context);
+                    _button = new RippleButton(Context, GetRippleColor());
                     _button.SetWidth(sideSize);
                     _button.SetHeight(sideSize);
-                    //_button.SetBackgroundColor(AColor.Red);
-                    _button.SetBackgroundResource(Resource.Drawable.bkg_roundedview);
+                    _button.SetTextColor(GetColor());
+                    _button.Background = GetBackgroundDrawable();
                     _button.Text = Element.Text;
                     _button.Gravity = Android.Views.GravityFlags.Center;
                     _button.OnClick += (sender, args) =>
@@ -61,14 +72,48 @@ namespace FormsPinView.Droid
 
         protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            if (_button != null)
+            {
+                if (e.PropertyName == PinItemView.ColorProperty.PropertyName)
+                {
+                    _button.SetTextColor(GetColor());
+                    return;
+                }
+                else if (e.PropertyName == PinItemView.BorderColorProperty.PropertyName)
+                {
+                    _button.Background = GetBackgroundDrawable();
+                    return;
+                }
+                else if (e.PropertyName == PinItemView.RippleColorProperty.PropertyName)
+                {
+                    _button.SetRippleColor(GetRippleColor());
+                    return;
+                }
+            }
             base.OnElementPropertyChanged(sender, e);
         }
 
-        private float ConvertDpToPixel(float dp)
+        private Drawable GetBackgroundDrawable()
         {
-            float density = Context.Resources.DisplayMetrics.Density;
-            return (int)Math.Round((float)dp * density);
+            GradientDrawable drawable = (GradientDrawable)ResourcesCompat.GetDrawable(
+                res: Resources,
+                id: Resource.Drawable.bkg_roundedview,
+                theme: null);
+            if (Element is PinItemView element)
+            {
+                drawable.SetStroke(1, element.BorderColor.ToAndroid());
+            }
+            return drawable;
+        }
+
+        private AColor GetRippleColor()
+        {
+            return Element?.RippleColor.ToAndroid() ?? AColor.Gray;
+        }
+
+        private AColor GetColor()
+        {
+            return Element?.Color.ToAndroid() ?? AColor.Gray;
         }
     }
 }
-

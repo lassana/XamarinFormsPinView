@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata minClientVersion="2.8.1">
         <id>FormsPinView</id>
-        <version>2.0.0</version>
+        <version>2.1.0-pre1</version>
         <title>PIN keyboard for Xamarin.Forms</title>
         <authors>Mikalai Daronin</authors>
         <owners>Mikalai Daronin</owners>
@@ -11,7 +11,7 @@
         <iconUrl>https://raw.githubusercontent.com/jamesmontemagno/Xamarin-Templates/master/Plugins-Templates/icons/plugin_icon_nuget.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>A Xamarin.Forms UI control which is designed to be used as PIN keyboard. Built against: 2.5.0.280555</description>
-        <summary>Custom control for Xamarin.Forms projects that provides to users simple and clear way to enter numeric key.</summary>
+        <summary>A custom control for Xamarin.Forms projects that provides to users simple and clear way to enter numeric key.</summary>
         <tags>xamarin, netstandard, android, xamarin.forms, ios</tags>
         <dependencies>
             <dependency id="Xamarin.Forms" version="2.5.0.280555" />

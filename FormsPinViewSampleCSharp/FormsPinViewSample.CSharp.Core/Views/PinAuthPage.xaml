@@ -24,7 +24,10 @@
                 ClearAfterSuccess="false"
                 Success="Handle_Success"
                 ErrorCommand="{Binding ErrorCommand}"
-                SuccessCommand="{Binding SuccessCommand}" />
+                SuccessCommand="{Binding SuccessCommand}"
+                Color="Green"
+                BorderColor="Lime"
+                RippleColor="GreenYellow" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

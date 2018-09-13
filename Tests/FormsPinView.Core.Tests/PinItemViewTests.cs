@@ -5,7 +5,7 @@ using Xunit;
 namespace FormsPinView.Core.Tests
 {
     /// <summary>
-    /// PinItemView tests.
+    /// <see cref="PinItemView"/> tests.
     /// </summary>
     public class PinItemViewTests
     {
@@ -52,6 +52,51 @@ namespace FormsPinView.Core.Tests
                                    PinItemView.CommandParameterProperty.PropertyName,
                                    () => view.CommandParameter = expectedValue);
             Assert.Same(expectedValue, view.CommandParameter);
+        }
+
+        /// <summary>
+        /// Tests the Color property: if it's being set and if the 
+        /// corresponding PropertyChanged event is being raised.
+        /// </summary>
+        [Fact]
+        public void TestColorProperty()
+        {
+            var view = new PinItemView();
+            var expectedValue = Color.Yellow;
+            Assert.PropertyChanged(view,
+                                   PinItemView.ColorProperty.PropertyName,
+                                   () => view.Color = expectedValue);
+            Assert.Equal(expectedValue, view.Color);
+        }
+
+        /// <summary>
+        /// Tests the BorderColor property: if it's being set and if the 
+        /// corresponding PropertyChanged event is being raised.
+        /// </summary>
+        [Fact]
+        public void TestBorderColorProperty()
+        {
+            var view = new PinItemView();
+            var expectedValue = Color.DarkRed;
+            Assert.PropertyChanged(view,
+                                   PinItemView.BorderColorProperty.PropertyName,
+                                   () => view.BorderColor = expectedValue);
+            Assert.Equal(expectedValue, view.BorderColor);
+        }
+
+        /// <summary>
+        /// Tests the RiipleColor property: if it's being set and if the 
+        /// corresponding PropertyChanged event is being raised.
+        /// </summary>
+        [Fact]
+        public void TestRippleColorProperty()
+        {
+            var view = new PinItemView();
+            var expectedValue = Color.LightCyan;
+            Assert.PropertyChanged(view,
+                                   PinItemView.RippleColorProperty.PropertyName,
+                                   () => view.RippleColor = expectedValue);
+            Assert.Equal(expectedValue, view.RippleColor);
         }
     }
 }

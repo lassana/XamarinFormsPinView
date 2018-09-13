@@ -41,23 +41,32 @@
         
 1. `PinView` is MVVM-ready, so you can bind the following properties:
 
-- `Validator` (`Func<IList<char>, bool>`) - required; you should check entered PIN there
-- `PinLength` (`int`) - the PIN length; default is 4
-- `EmptyCircleImage` (`ImageSource`) - _not entered_ symbol representation; default is a black empty circle
-- `FilledCircleImage` (`ImageSource`) - _entered_ symbol representation; default is a black filled circle
-- `SuccessCommand` (`ICommand`) - invoked when the correct PIN is entered
-- `ErrorCommand` (`ICommand`) - invoked when an incorrect PIN is entered
-- `ClearAfterSuccess` (`bool`) - indicates whether the entered PIN should be cleaned or not after it was confirmed as correct; default is `true` 
+| Property | Type | Description | Default | Required |
+|---------------------|---------------------------|----------------------------------------------------------------------------------------------|---------|----------|
+| `Validator` | `Func<IList<char>, bool>` | Function to check entered PIN | `null` | **Yes** |
+| `PinLength` | `int` | The PIN length | 4 | No |
+| `SuccessCommand` | `ICommand` | Invoked when the correct PIN is entered | `null` | No |
+| `ErrorCommand` | `ICommand` | Invoked when an incorrect PIN is entered | `null` | No |
+| `ClearAfterSuccess` | `bool` | Indicates whether the entered PIN should be cleaned or not after it was confirmed as correct | true | No |
+| `BorderColor` | `Color` | View tint color. | Gray | No |
+| `Color` | `Color` | View basic color. | Black | No |
+| `RippleColor` | `Color` | View touch-effect color. | Gray | No |
 
 ## TODO
 
 - [x] Use `AbsoluteLayout` instead of `Grid`, no XAML
-- [ ] Colorizing
+- [x] Colorizing
 - [ ] Randomizing the numbers order
 - [ ] CI builds
 - [ ] UI tests
 
 ## Changelog
+
+### 2.1.0-pre1
+
+- Root container changed from `Grid` to `AbsoluteLayout`
+- Allowed to configure view colors: see `BorderColor`, `Color`, and `RippleColor`
+- Removed `EmptyCircleImage` and `FilledCircleImage` properties
 
 ### 2.0.0
 
