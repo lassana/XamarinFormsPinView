@@ -208,7 +208,7 @@ namespace FormsPinView.Core
                                     propertyChanged: Handle_RippleColorChanged);
 
         /// <summary>
-        /// Gets or sets a view basic color.
+        /// Gets or sets a view touch-effect color.
         /// </summary>
         public Color RippleColor
         {
