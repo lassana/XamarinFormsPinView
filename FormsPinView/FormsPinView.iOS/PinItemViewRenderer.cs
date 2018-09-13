@@ -70,7 +70,7 @@ namespace FormsPinView.iOS
             {
                 if (e.PropertyName == PinItemView.ColorProperty.PropertyName)
                 {
-                    _button.RippleColor = Element.Color.ToUIColor();
+                    _button.SetTitleColor(Element.Color.ToUIColor(), UIControlState.Normal);
                     return;
                 }
                 else if (e.PropertyName == PinItemView.BorderColorProperty.PropertyName)

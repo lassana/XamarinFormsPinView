@@ -1,35 +1,44 @@
 ﻿using System;
+using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using Android.Util;
-using Android.Graphics;
-using Android.Content;
 
 namespace FormsPinView.Droid
 {
     public class RippleButton : TextView
     {
-        private float _duration = 250;
-        private float _speed = 1;
-        private float _radius = 0;
-        private Paint _paint = new Paint();
-        private float _endRadius = 0;
-        private float _rippleX = 0;
-        private float _rippleY = 0;
+        private readonly float _duration = 250f;
+        private float _speed = 1f;
+        private float _radius = 0f;
+        private float _endRadius = 0f;
+        private float _rippleX = 0f;
+        private float _rippleY = 0f;
         private int _width = 0;
         private int _height = 0;
         private Handler _handler;
         private MotionEventActions? _touchAction;
 
+        private readonly Paint _paint = new Paint();
+
         public EventHandler<EventArgs> OnClick;
 
-        public RippleButton(Context context) : base(context)
+        public RippleButton(Context context, Color color) : base(context)
         {
-            Init();
+            Init(color);
         }
 
-        private void Init()
+        public void SetRippleColor(Color color)
+        {
+            if (IsInEditMode)
+            {
+                return;
+            }
+            _paint.Color = color;
+        }
+
+        private void Init(Color color)
         {
             if (IsInEditMode)
             {
@@ -38,7 +47,7 @@ namespace FormsPinView.Droid
 
             _handler = new Handler();
             _paint.SetStyle(Android.Graphics.Paint.Style.Fill);
-            _paint.Color = Color.Gray;
+            _paint.Color = color;
             _paint.AntiAlias = true;
         }
 
