@@ -56,6 +56,9 @@
 
 - [x] Use `AbsoluteLayout` instead of `Grid`, no XAML
 - [x] Colorizing
+- [ ] Rowspacing & Colspacing
+- [ ] Buttons are Circle or Square
+- [ ] Font size
 - [ ] Randomizing the numbers order
 - [ ] CI builds
 - [ ] UI tests
