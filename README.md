@@ -59,6 +59,8 @@
 - [ ] Rowspacing & Colspacing
 - [ ] Buttons are Circle or Square
 - [ ] Font size
+- [ ] Button background
+- [ ] Buttom border (size)
 - [ ] Randomizing the numbers order
 - [ ] CI builds
 - [ ] UI tests
